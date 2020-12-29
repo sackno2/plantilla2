@@ -8,7 +8,7 @@ $(document).ready(function(){
 function _attachTopNavMenu () {
   var adjacentTopNavMenuDOM = "" +
     "<nav class='navbar navbar-expand-md navbar-dark fixed-top bg-dark'>" +
-      "<a class='navbar-brand' href='./'>SIG Agua Potable</a>" +
+      "<a class='navbar-brand' href='./'>SIG ADESCOTAB</a>" +
       "<button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarCollapse' aria-controls='navbarCollapse' aria-expanded='false' aria-label='Toggle navigation'>" +
         "<span class='navbar-toggler-icon'></span>" +
       "</button>" +
@@ -26,9 +26,9 @@ function _attachTopNavMenu () {
           "<li class='nav-item dropdown'>" +
             "<a class='nav-link dropdown-toggle' href='#' id='navbarDropdownUpdate' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i class='fa fa-location-arrow'></i>&nbsp;Update [Edit]</a>" +
             "<div class='dropdown-menu' aria-labelledby='navbarDropdownUpdate'>" +
-              "<a id='leaflet_crud_update_point' class='dropdown-item' href='#'><i class='fa fa-pencil-square-o'></i>&nbsp;Point</a>" +
-              "<a id='leaflet_crud_update_linestring' class='dropdown-item' href='#'><i class='fa fa-pencil-square-o'></i>&nbsp;Line</a>" +
-              "<a id='leaflet_crud_update_polygon' class='dropdown-item' href='#'><i class='fa fa-pencil-square-o'></i>&nbsp;Polygon</a>" +
+              "<a id='leaflet_crud_update_point' class='dropdown-item' href='#'><i class='fa fa-pencil-square-o'></i>&nbsp;Clientes</a>" +
+              "<a id='leaflet_crud_update_linestring' class='dropdown-item' href='#'><i class='fa fa-pencil-square-o'></i>&nbsp;Tuberias</a>" +
+              "<a id='leaflet_crud_update_polygon' class='dropdown-item' href='#'><i class='fa fa-pencil-square-o'></i>&nbsp;Planta</a>" +
             "</div>" +
           "</li>" +
           "<li class='nav-item'>" +
@@ -90,7 +90,7 @@ function _buildDigitiseModalBox (targetmodal,context,geometry) {
   targetmodal = typeof targetmodal !== 'undefined' ? targetmodal : 'modalbox';
   context = typeof context !== 'undefined' ? context : 'POINT';
   //geometry = typeof geometry !== 'undefined' ? geometry : 'POINT (-88.824353 13.713625)';
-  geometry = typeof geometry !== 'undefined' ? geometry : 'POINT (13.556061 -88.350442)';
+  geometry = typeof geometry !== 'undefined' ? geometry : 'POINT (13.493443 -88.056179)';
 
   var htmlformcomponent = "" +
       "<input type='hidden' id='command' name='command' value='"+context+"'/>" +

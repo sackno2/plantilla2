@@ -4,7 +4,7 @@
   require_once('includes/load.php');
   $clientepdf = join_reporteclientepdf_table();
   $asociacion = join_asociacion1_table();
-
+  
 // Deshabilitar todo reporte de errores
 //error_reporting(0);  
 /**  $sql2 = ("SELECT * FROM asociacion WHERE cod_asociacion=18");
@@ -68,7 +68,16 @@
                 <td class="text-center"> <?php echo remove_junk($clientespdf['municipio']); ?></td>
                 <td class="text-center"> <?php echo remove_junk($clientespdf['dui']); ?></td>
                 <td class="text-center"> <?php echo remove_junk($clientespdf['num_medidor']); ?></td>
-                <td class="text-center"> <?php echo remove_junk($clientespdf['estado']); ?></td>
+               <?php 
+                if(remove_junk($clientespdf['estado']) == "1")
+                  {
+                     $situacion="Inactivo";
+                  }
+                 else{
+                  $situacion = "Activo";
+                  }
+                ?>
+                <td class="text-center"> <?php echo remove_junk($situacion); ?></td>
               </tr>   
             <?php endforeach; ?>
             </tbody>

@@ -15,7 +15,7 @@ if(!$cliente){
 ?>
 <?php
  if(isset($_POST['edit_cliente'])){
-    $req_fields = array('num_cuenta','fecha_actual','nombres_cli', 'apellidos_cli','fech_naci','direccion_cli','cod_departamento','cod_municipio','sexo_cli','dui','telefono_cli','celular_cli','nit','email_cli','num_medidor','lect_inicial','estado_cli','latitud_cli','longitud_cli','altura_cli' );
+    $req_fields = array('num_cuenta','fecha_actual','nombres_cli', 'apellidos_cli','fech_naci','direccion_cli','cod_departamento','cod_municipio','sexo_cli','dui','telefono_cli','celular_cli','nit','email_cli','num_medidor','lect_inicial','estado_cli');
     validate_fields($req_fields);
 
    if(empty($errors)){
@@ -36,13 +36,11 @@ if(!$cliente){
      $c_correo  = remove_junk($db->escape($_POST['email_cli']));
 	 $c_nummedi  = remove_junk($db->escape($_POST['num_medidor']));
      $c_lectmedi   = remove_junk($db->escape($_POST['lect_inicial']));
-     $c_estado   = remove_junk($db->escape($_POST['estado_cli']));
-     $c_latitud   = remove_junk($db->escape($_POST['latitud_cli']));
-     $c_longitud  = remove_junk($db->escape($_POST['longitud_cli']));
-     if (is_null($_POST['altura_cli']) || $_POST['altura_cli'] === "") {
+    
+     if (is_null($_POST['estado_cli']) || $_POST['estado_cli'] === "") {
        $media_id = '0';
        } else {
-        $c_altura = remove_junk($db->escape($_POST['altura_cli']));
+        $c_estado = remove_junk($db->escape($_POST['estado_cli']));
        }
        $query   = "UPDATE inv_cliente SET";
        $query  .=" num_cuenta='{$c_numcuenta}', fecha_crea='{$c_fechactual}', nombre='{$c_nombres}',
@@ -51,7 +49,7 @@ if(!$cliente){
 	   $query  .="cod_departamento= '{$c_departamento}',  sexo='{$c_sexo}',  dui='{$c_dui}', telefono='{$c_telefono}',
 ";
        $query .=" celular='{$c_celular}', nit= '{$c_nit}', mail='{$c_correo}', num_medidor='{$c_nummedi}', lectura_ini='{$c_lectmedi}',";
-	   $query .=" estado='{$c_estado}', latitud='{$c_latitud}', longitud='{$c_longitud}', altura='{$c_altura}'";
+	   $query .=" estado='{$c_estado}'";
 	   $query  .=" WHERE cod_cliente ='{$cliente['cod_cliente']}'";
 	   
 	   
@@ -252,13 +250,16 @@ if(!$cliente){
     </div>
     <div class="form-group col-md-4">
       <label for="estado_cli">Estado</label>
+     
+
       <select id="estado_cli" name="estado_cli" class="form-control">
+        <option value="" <?php if($cliente['estado']==="1"){ $estado1="Inactivo";} else{ $estado1="Activo";} echo "selected";  ?>><?php echo $estado1; ?></option>
         <option value="1">Inactivo</option>
         <option value="2">Activo</option>
       </select>
     </div>
   </div>
-  <div class="row">
+<!--  <div class="row">
   <div class="form-group">
    <label for="ubicaGeo">Ubicacion Geografica</label>
   </div>
@@ -277,7 +278,7 @@ if(!$cliente){
        <input type="text" name="altura_cli" class="form-control" id="altura_cli" placeholder="Ej. 110" value="<?php echo remove_junk($cliente['altura']); ?>">
     </div>
   </div>
-<!--<div class="form-group">
+<div class="form-group">
     <div class="form-check">
       <input class="form-check-input" type="checkbox" id="gridCheck">
       <label class="form-check-label" for="gridCheck">

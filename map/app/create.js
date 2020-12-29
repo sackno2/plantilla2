@@ -18,7 +18,7 @@ function _displayMapCreate (divtarget) {
   map = L.map("map", {
     zoom: 12,
     //center: [-2.5918889841, 118.2788085937],
-    center: [13.556061,-88.350442],
+    center: [13.493443,-88.056179],
     layers: [openStreetMaps],
     minZoom: 3,
     maxZoom: 20,
@@ -26,7 +26,7 @@ function _displayMapCreate (divtarget) {
     attributionControl: true
   });
   
-  map.setMaxBounds([[13.924434, -88.614243], [13.145913, -88.102556]]);
+  map.setMaxBounds([[13.528544, -88.106495], [13.465902, -88.030154]]);
 
   var zoomControl = L.control.zoom({
     position: "topleft"

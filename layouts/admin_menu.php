@@ -1,6 +1,6 @@
 <ul>
   <li>
-    <a href="admin.php">
+    <a href="panel_reportes.php">
       <i class="glyphicon glyphicon-home"></i>
       <span>Panel de control</span>
     </a>

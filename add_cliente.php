@@ -10,7 +10,7 @@
 <?php
   //echo $_POST['num_cuenta'];
  if(isset($_POST['add_cliente'])){
-   $req_fields = array('num_cuenta','fecha_actual','nombres_cli', 'apellidos_cli','fech_naci','direccion_cli','cod_departamento','cod_municipio','sexo_cli','dui','telefono_cli','celular_cli','nit','email_cli','num_medidor','lect_inicial','estado_cli','latitud_cli','longitud_cli','altura_cli');
+   $req_fields = array('num_cuenta','fecha_actual','nombres_cli', 'apellidos_cli','fech_naci','direccion_cli','cod_departamento','cod_municipio','sexo_cli','dui','telefono_cli','celular_cli','nit','email_cli','num_medidor','lect_inicial','estado_cli');
    validate_fields($req_fields);
    if(empty($errors)){
      //$c_codcliente  = remove_junk($db->escape($_POST['cod_cliente']));*/
@@ -30,16 +30,16 @@
      $c_correo  = remove_junk($db->escape($_POST['email_cli']));
 	 $c_nummedi  = remove_junk($db->escape($_POST['num_medidor']));
      $c_lectmedi   = remove_junk($db->escape($_POST['lect_inicial']));
-     $c_estado   = remove_junk($db->escape($_POST['estado_cli']));
-     $c_latitud   = remove_junk($db->escape($_POST['latitud_cli']));
-     $c_longitud  = remove_junk($db->escape($_POST['longitud_cli']));
-     if (is_null($_POST['altura_cli']) || $_POST['altura_cli'] === "") {
+    // $c_estado   = remove_junk($db->escape($_POST['estado_cli']));
+    // $c_latitud   = remove_junk($db->escape($_POST['latitud_cli']));
+    // $c_longitud  = remove_junk($db->escape($_POST['longitud_cli']));
+     if (is_null($_POST['estado_cli']) || $_POST['estado_cli'] === "") {
        $media_id = '0';
      } else {
-       $c_altura = remove_junk($db->escape($_POST['altura_cli']));
+       $c_estado = remove_junk($db->escape($_POST['estado_cli']));
      }
      $date    = make_date();
-     $query  = "INSERT INTO inv_cliente (num_cuenta,fecha_crea, nombre,apellido,fecha_naci,direccion,cod_municipio,cod_departamento, sexo, dui,telefono, celular,nit,mail,num_medidor,lectura_ini,estado,latitud,longitud,altura) VALUES ('{$c_numcuenta}','{$c_fechactual}','{$c_nombres}','{$c_apellidos}','{$c_fechanaci}', '{$c_direccion}','{$c_municipio}','{$c_departamento}','{$c_sexo}','{$c_dui}','{$c_telefono}', '{$c_celular}','{$c_nit}','{$c_correo}','{$c_nummedi}','{$c_lectmedi}','{$c_estado}','{$c_latitud}','{$c_longitud}','{$c_altura}')";
+     $query  = "INSERT INTO inv_cliente (num_cuenta,fecha_crea, nombre,apellido,fecha_naci,direccion,cod_municipio,cod_departamento, sexo, dui,telefono, celular,nit,mail,num_medidor,lectura_ini,estado) VALUES ('{$c_numcuenta}','{$c_fechactual}','{$c_nombres}','{$c_apellidos}','{$c_fechanaci}', '{$c_direccion}','{$c_municipio}','{$c_departamento}','{$c_sexo}','{$c_dui}','{$c_telefono}', '{$c_celular}','{$c_nit}','{$c_correo}','{$c_nummedi}','{$c_lectmedi}','{$c_estado}')";
      $query .=" ON DUPLICATE KEY UPDATE num_cuenta='{$c_numcuenta}'";
 	 
 	 $actualiza=("UPDATE inv_medidor SET asignado='SI' WHERE numero='$c_nummedi'");

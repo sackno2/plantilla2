@@ -1,6 +1,7 @@
 <?php
   $page_title = 'Lista de clientes';
   require_once('includes/load.php');
+  error_reporting(0);
   // Checkin What level user has permission to view this page
    page_require_level(2);
   $clientes = join_inv_cliente_table();
