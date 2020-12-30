@@ -89,12 +89,15 @@ if(!$tarifa){
   <div class="form-group col-md-4">
     <label for="hasta_tarifa">Hasta:</label>
     <input type="number" name="hasta_tarifa" class="form-control" value="<?php echo remove_junk($tarifa['final']);?>" autofocus required >  
-  </div>    
-  <div class="form-group col-md-4" align="center">
-     <div class="row padding-top">
-      <input type="submit" name="edit_tarifa" id="submit" value="Guardar" class="btn btn-primary">
-     </div>
-    </div>     
+  </div> 
+  </div>
+  <div class="row">
+  <div class="form-group col-md-6" align="left">
+      <a href="add_tarifa.php" class="btn btn-primary">Regresar</a>
+  </div>   
+  <div class="form-group col-md-6" align="center">
+     <input type="submit" name="edit_tarifa" id="submit" value="Guardar" class="btn btn-primary">
+  </div>     
   </div>
  </form> 
 <!--Hasta aqui el formulario -->

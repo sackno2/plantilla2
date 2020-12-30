@@ -2,12 +2,12 @@
   $page_title = 'Editar cliente';
   require_once('includes/load.php');
   // Checkin What level user has permission to view this page
-   page_require_level(2);
+  page_require_level(2);
 ?>
 <?php
 $cliente = find_by_id2('inv_cliente',(int)$_GET['id']);
-$all_categories = find_all('categories');
-$all_photo = find_all('media');
+//$all_categories = find_all('categories');
+//$all_photo = find_all('media');
 if(!$cliente){
   $session->msg("d","Cliente no encontrado por Codigo.",$cliente);
   redirect('cliente.php');
@@ -15,11 +15,11 @@ if(!$cliente){
 ?>
 <?php
  if(isset($_POST['edit_cliente'])){
-    $req_fields = array('num_cuenta','fecha_actual','nombres_cli', 'apellidos_cli','fech_naci','direccion_cli','cod_departamento','cod_municipio','sexo_cli','dui','telefono_cli','celular_cli','nit','email_cli','num_medidor','lect_inicial','estado_cli');
+    $req_fields = array('cod_cliente','num_cuenta','fecha_actual','nombres_cli', 'apellidos_cli','fech_naci','direccion_cli','cod_departamento','cod_municipio','sexo_cli','dui','telefono_cli','celular_cli','nit','email_cli','num_medidor','lect_inicial','estado_cli');
     validate_fields($req_fields);
 
    if(empty($errors)){
-       //$c_codcliente  = remove_junk($db->escape($_POST['cod_cliente']));*/
+     $c_codcliente  = remove_junk($db->escape($_POST['cod_cliente']));
      $c_numcuenta   = remove_junk($db->escape($_POST['num_cuenta']));
      $c_fechactual   = remove_junk($db->escape($_POST['fecha_actual']));
      $c_nombres   = remove_junk($db->escape($_POST['nombres_cli']));
@@ -50,7 +50,7 @@ if(!$cliente){
 ";
        $query .=" celular='{$c_celular}', nit= '{$c_nit}', mail='{$c_correo}', num_medidor='{$c_nummedi}', lectura_ini='{$c_lectmedi}',";
 	   $query .=" estado='{$c_estado}'";
-	   $query  .=" WHERE cod_cliente ='{$cliente['cod_cliente']}'";
+	   $query  .=" WHERE cod_cliente ='{$c_codcliente}'";
 	   
 	   
 	   $actualiza=("UPDATE inv_medidor SET asignado='SI' WHERE cod_medidor='$c_nummedi'");

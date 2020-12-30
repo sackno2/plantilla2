@@ -129,7 +129,7 @@ if(!$rec_reclamo){
  
   <div class="row">
       <div class="form-group col-md-4" align="left">
-      <input type="submit" name="submit1" id="submit1" value="Buscar" class="btn btn-primary">
+      <a href="lis_reclamos.php" class="btn btn-primary">Regresar</a>  
       </div>
       <div class="form-group col-md-4" align="center">
       <input type="submit" name="reg_reclamo" id="submit" value="Guardar" class="btn btn-primary">
