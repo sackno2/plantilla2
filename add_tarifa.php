@@ -86,12 +86,16 @@
             <div class="form-group col-md-3" align="center" >
             <div class="row padding-top">
              
-    <input type="submit" name="add_tarifa" id="submit" value="Guardar" class="btn btn-primary">
-
-    <div class="pull-right">
+    <div class="pull-left">
       <a href="reportetarifaPDF.php" class="btn btn-primary" target="_blank">Reporte</a>
     </div>
-    		
+
+    <div class="pull-right">
+      <a href="home.php" class="btn btn-primary" target="_blank">Regresar</a>
+    </div>
+
+     <input type="submit" name="add_tarifa" id="submit" value="Guardar" class="btn btn-primary">
+
             </div>
             </div>
            </div> 		

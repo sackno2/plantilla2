@@ -18,8 +18,9 @@
             <span>Lista de Reconexiones</span>
          </strong>
          <div class="pull-right">
-           <a href="buscar_cli2.php" class="btn btn-primary">Buscar desconexiones</a>
-           <a href="reportereconexion.php" class="btn btn-primary" target="_blank">Reporte</a>
+          <a href="buscar_cli2.php" class="btn btn-primary">Buscar desconexiones</a>
+          <a href="reportereconexion.php" class="btn btn-primary" target="_blank">Reporte</a>
+          <a href="home.php" class="btn btn-primary" target="_blank">Regresar</a>
          </div>
         </div>
 <!--tabla de prueba-->

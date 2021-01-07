@@ -61,7 +61,7 @@
          <div class="col-md-12">
           <form method="post" action="add_servicio.php" class="clearfix">
             <div class="form-row"> 
-            <div class="form-group col-md-6">
+            <div class="form-group col-md-3">
 			      <label for="nom_servicio">Nombre :</label>					
 			      <input type="text" name="nom_servicio" id="nom_servicio" class="form-control" autofocus required />
              </div>
@@ -71,7 +71,7 @@
 			      <input type="number" step="0.01" min="0.01" name="valor_servicio" id="valor_servicio" class="form-control" required />
             </div>
 						
-            <div class="form-group col-md-3" align="center" >
+            <div class="form-group col-md-6" align="center" >
             <div class="pull-right">
             <a href="home.php" class="btn btn-primary">Regresar</a>
             </div>

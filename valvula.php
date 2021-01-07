@@ -18,8 +18,9 @@
             <span>Lista de Válvulas</span>
          </strong>
          <div class="pull-right">
-           <a href="add_valvula.php" class="btn btn-primary">Agregar Válvula</a>
-           <a href="reportevalvula.php" class="btn btn-primary" target="_blank">Reporte</a>
+          <a href="add_valvula.php" class="btn btn-primary">Agregar Válvula</a>
+          <a href="reportevalvula.php" class="btn btn-primary" target="_blank">Reporte</a>
+          <a href="home.php" class="btn btn-primary" target="_blank">Regresar</a>
          </div>
         </div>
 <!--tabla de prueba-->
