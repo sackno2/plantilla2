@@ -111,7 +111,7 @@
     </a>
   </li>///-->
   
-  <li>
+  <!--///<li>
     <a href="#" class="submenu-toggle">
       <i class="glyphicon glyphicon-th-large"></i>
       <span>Productos</span>
@@ -129,7 +129,7 @@
     </a>
   </li>
   
-   <!--///<li>
+   <li>
     <a href="#" class="submenu-toggle">
       <i class="glyphicon glyphicon-th-list"></i>
        <span>Ventas</span>
@@ -138,7 +138,7 @@
          <li><a href="sales.php">Administrar ventas</a> </li>
          <li><a href="add_sale.php">Agregar venta</a> </li>
      </ul>
-  </li>///-->
+  </li>
   
   <li>
     <a href="panel_reportes.php" class="submenu-toggle">
@@ -151,4 +151,4 @@
         <li><a href="daily_sales.php">Ventas diarias</a> </li>
       </ul>
   </li>
-</ul>
+</ul>///-->

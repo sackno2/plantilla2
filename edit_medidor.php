@@ -6,8 +6,6 @@
 ?>
 <?php
 $medidor = find_by_id3('inv_medidor',(int)$_GET['id']);
-//$all_categories = find_all('categories');
-//$all_photo = find_all('media');
 
 
 if(!$medidor){

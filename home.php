@@ -11,7 +11,8 @@
  <div class="col-md-12">
     <div class="panel">
       <div class="jumbotron text-center">
-         <h1>Esta es su nueva página de inicio</h1>
+         <h1>Asociación de Desarrollo Comunal (ADESCOTAB)</h1>
+         <h2>Sistema de Administración de Servicio de Agua Potable</h2>
      
       </div>
     </div>

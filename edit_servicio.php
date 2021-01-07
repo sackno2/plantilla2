@@ -6,8 +6,7 @@
 ?>
 <?php
 $servicio = find_by_id5('inv_servicio',(int)$_GET['id']);
-//$all_categories = find_all('categories');
-//$all_photo = find_all('media');
+
 
 
 if(!$servicio){

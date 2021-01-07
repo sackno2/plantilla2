@@ -73,6 +73,9 @@
 						
             <div class="form-group col-md-3" align="center" >
             <div class="pull-right">
+            <a href="home.php" class="btn btn-primary">Regresar</a>
+            </div>
+            <div class="pull-right">
             <a href="reporteserviciosPDF.php" class="btn btn-primary">Reporte</a>
             </div> 
             <div class="pull-right">
