@@ -4,22 +4,26 @@
   // Checkin What level user has permission to view this page
   page_require_level(2);
 ?>
+
 <?php
 $cliente = find_by_id2('inv_cliente',(int)$_GET['id']);
-//$all_categories = find_all('categories');
-//$all_photo = find_all('media');
+
 if(!$cliente){
-  $session->msg("d","Cliente no encontrado por Codigo.",$cliente);
+  $session->msg("d","Cliente no encontrado por Código.",$cliente);
   redirect('cliente.php');
 }
 ?>
+
 <?php
  if(isset($_POST['edit_cliente'])){
-    $req_fields = array('cod_cliente','num_cuenta','fecha_actual','nombres_cli', 'apellidos_cli','fech_naci','direccion_cli','cod_departamento','cod_municipio','sexo_cli','dui','telefono_cli','celular_cli','nit','email_cli','num_medidor','lect_inicial','estado_cli');
-    validate_fields($req_fields);
+    $req_fields = array('num_cuenta','fecha_actual','nombres_cli', 'apellidos_cli','fech_naci','direccion_cli','cod_departamento','cod_municipio','sexo_cli','dui','telefono_cli','celular_cli','nit','email_cli','num_medidor','lect_inicial','estado_cli');
+ 
+ //   validate_fields($req_fields);
+
 
    if(empty($errors)){
-     $c_codcliente  = remove_junk($db->escape($_POST['cod_cliente']));
+
+    // $c_codcliente  = remove_junk($db->escape($_POST['cod_cliente']));
      $c_numcuenta   = remove_junk($db->escape($_POST['num_cuenta']));
      $c_fechactual   = remove_junk($db->escape($_POST['fecha_actual']));
      $c_nombres   = remove_junk($db->escape($_POST['nombres_cli']));
@@ -28,13 +32,13 @@ if(!$cliente){
      $c_direccion   = remove_junk($db->escape($_POST['direccion_cli']));
      $c_departamento   = remove_junk($db->escape($_POST['cod_departamento']));
      $c_municipio  = remove_junk($db->escape($_POST['cod_municipio']));
-	 $c_sexo  = remove_junk($db->escape($_POST['sexo_cli']));
-	 $c_dui  = remove_junk($db->escape($_POST['dui']));
+	   $c_sexo  = remove_junk($db->escape($_POST['sexo_cli']));
+	   $c_dui  = remove_junk($db->escape($_POST['dui']));
      $c_telefono   = remove_junk($db->escape($_POST['telefono_cli']));
      $c_celular   = remove_junk($db->escape($_POST['celular_cli']));
      $c_nit   = remove_junk($db->escape($_POST['nit']));
      $c_correo  = remove_junk($db->escape($_POST['email_cli']));
-	 $c_nummedi  = remove_junk($db->escape($_POST['num_medidor']));
+	   $c_nummedi  = remove_junk($db->escape($_POST['num_medidor']));
      $c_lectmedi   = remove_junk($db->escape($_POST['lect_inicial']));
     
      if (is_null($_POST['estado_cli']) || $_POST['estado_cli'] === "") {
@@ -42,7 +46,9 @@ if(!$cliente){
        } else {
         $c_estado = remove_junk($db->escape($_POST['estado_cli']));
        }
-       $query   = "UPDATE inv_cliente SET";
+
+
+/*       $query   = "UPDATE inv_cliente SET";
        $query  .=" num_cuenta='{$c_numcuenta}', fecha_crea='{$c_fechactual}', nombre='{$c_nombres}',
 ";
        $query  .=" apellido='{$c_apellidos}', fecha_naci= '{$c_fechanaci}', direccion='{$c_direccion}', cod_municipio='{$c_municipio}',";
@@ -50,9 +56,14 @@ if(!$cliente){
 ";
        $query .=" celular='{$c_celular}', nit= '{$c_nit}', mail='{$c_correo}', num_medidor='{$c_nummedi}', lectura_ini='{$c_lectmedi}',";
 	   $query .=" estado='{$c_estado}'";
-	   $query  .=" WHERE cod_cliente ='{$c_codcliente}'";
+	   $query  .=" WHERE cod_cliente ='$cliente[cod_cliente]'";
+	   */
 	   
-	   
+     $query = ("UPDATE inv_cliente SET num_cuenta='$c_numcuenta', fecha_crea='$c_fechactual', nombre='$c_nombres', apellido='$c_apellidos', fecha_naci= '$c_fechanaci', direccion='$c_direccion', cod_municipio='$c_municipio', cod_departamento='$c_departamento',  sexo='$c_sexo',  dui='$c_dui', telefono='$c_telefono', celular='$c_celular', nit= '$c_nit', mail='$c_correo', num_medidor='$c_nummedi', lectura_ini='$c_lectmedi', estado='$c_estado' WHERE cod_cliente ='$cliente[cod_cliente]'"); 
+
+
+
+
 	   $actualiza=("UPDATE inv_medidor SET asignado='SI' WHERE cod_medidor='$c_nummedi'");
 	   $result1 =$db->query($actualiza);
 	   
@@ -102,7 +113,7 @@ if(!$cliente){
          <div class="col-md-12">
          
  <!--Inicio formulario principal-->       
-   <form method="post" action="edit_cliente.php?id=<?php echo remove_junk($cliente['cod_cliente']) ?>" class="clearfix"> 
+   <form method="post" action="edit_cliente.php?id=<?php echo remove_junk($cliente['cod_cliente']); ?>" class="clearfix"> 
  <div class="form-row">
  	<div class="form-group col-md-4">
       <label for="cod_cliente">Código Cliente</label>

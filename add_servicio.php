@@ -71,16 +71,21 @@
 			      <input type="number" step="0.01" min="0.01" name="valor_servicio" id="valor_servicio" class="form-control" required />
             </div>
 						
-            <div class="form-group col-md-6" align="center" >
+            <div class="form-group col-md-3" align="center" >
+            <div class="row padding-top">
+              
+
+            <div class="pull-left">
+            <a href="reporteserviciosPDF.php" class="btn btn-primary" target="_blank">Reporte</a>
+            </div> 
+
             <div class="pull-right">
             <a href="home.php" class="btn btn-primary">Regresar</a>
             </div>
-            <div class="pull-right">
-            <a href="reporteserviciosPDF.php" class="btn btn-primary">Reporte</a>
-            </div> 
-            <div class="pull-right">
+            
             <input type="submit" name="add_servicio" id="submit" value="Guardar" class="btn btn-primary">
-            </div>    
+           
+             </div>
             </div>
            </div> 		
           </form>

@@ -8,12 +8,12 @@
 $servicio = find_by_id5('inv_servicio',(int)$_GET['id']);
 
 
-
 if(!$servicio){
   $session->msg("d","Servicio no encontrado por Codigo.",$medidor);
   redirect('add_servicio.php');
 }
 ?>
+
 <?php
  if(isset($_POST['edit_servicio'])){
    $req_fields = array('nom_servicio','valor_servicio');
