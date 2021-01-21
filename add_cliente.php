@@ -172,7 +172,7 @@
   </div>
 <div class="form-row">
     <div class="form-group col-md-4">
-      <label for="num_medidor">Medidor</label>
+      <label for="num_medidor">Número Medidor</label>
       <?php
 		// Consulta la tabla medidor para obtenerla lista del select
 		$query_m = ("SELECT numero FROM inv_medidor WHERE asignado ='NO' ORDER BY cod_medidor ASC");

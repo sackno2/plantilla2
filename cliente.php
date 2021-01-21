@@ -55,8 +55,14 @@
                 <td class="text-center"> <?php echo remove_junk($cliente['num_cuenta']); ?></td>
                 <td class="text-center"> <?php echo remove_junk($cliente['nombre']); ?></td>
                 <td class="text-center"> <?php echo remove_junk($cliente['apellido']); ?></td>
-                <td class="text-center"> <?php echo remove_junk($cliente['num_medidor']); ?></td>
-            <!--<td class="text-center"> <?php //echo read_date($cliente['date']); ?></td>-->
+                <?php 
+                  if (remove_junk($cliente['estado'])==="1"){
+                      echo '<td class="text-center" title="Inactivo" bgcolor="#F17C7E">'. remove_junk($cliente["num_medidor"]).'</td>';
+
+                  }else{
+                      echo '<td class="text-center">'.remove_junk($cliente["num_medidor"]).'</td>';
+                  }
+                ?>
                 <td class="text-center">
                   <div class="btn-group">
                     <a href="edit_cliente.php?id=<?php echo (int)$cliente['cod_cliente'];?>" class="btn btn-info btn-xs"  title="Editar" data-toggle="tooltip">

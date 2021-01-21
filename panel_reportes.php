@@ -6,6 +6,10 @@
 ?>
 <?php
  $c_categorie     = count_by_id1('inv_cliente');
+ $cliente_inactivo= count_by_id3();
+ $cliente_activo  = count_by_id4();
+ $medidor_asignado= count_by_id5();
+ $medidor_noasignado= count_by_id6();
  $c_product       = count_by_id2('inv_medidor');
  $c_sale          = count_by_id('sales');
  $c_user          = count_by_id('users');
@@ -199,42 +203,62 @@ Plotly.newPlot('myDiv', data2);
           <tbody>
               <tr>
                 <td> 
-                  <div class="panel panel-box clearfix">
-                  <div class="panel-icon pull-left bg-yellow">
-                  <i class="glyphicon glyphicon-usd"></i>
-                  </div>
-                  <div class="panel-value pull-right">
-                  <h2 class="margin-top"> <?php  echo $consumo_total['total']; ?></h2>
-                  <p class="text-muted">Consumo total</p>
-                  </div>
-                  </div>
+                <div class="panel panel-box clearfix">
+                <div class="panel-icon pull-left bg-red">
+                <i class="glyphicon glyphicon-user"></i>
+                </div>
+                <div class="panel-value pull-right">
+                <h2 class="margin-top"> <?php  echo $cliente_inactivo['total']; ?></h2>
+                <p class="text-muted">Clientes Inactivos</p>
+                </div>
+                </div>
                 </td>
-              
                 <td>
                   <div class="panel panel-box clearfix">
                   <div class="panel-icon pull-left bg-green">
                   <i class="glyphicon glyphicon-user"></i>
                   </div>
                   <div class="panel-value pull-right">
-                  <h2 class="margin-top"> <?php  echo $c_user['total']; ?> </h2>
-                  <p class="text-muted">Usuarios</p>
+                  <h2 class="margin-top"> <?php  echo $cliente_activo['total']; ?> </h2>
+                  <p class="text-muted">Clientes Activos</p>
                   </div>
                   </div>
                 </td>
-              
                 <td>
                   <div class="panel panel-box clearfix">
-                  <div class="panel-icon pull-left bg-red">
+                  <div class="panel-icon pull-left bg-blue">
                   <i class="glyphicon glyphicon-user"></i>
                   </div>
                   <div class="panel-value pull-right">
                   <h2 class="margin-top"> <?php  echo $c_categorie['total']; ?> </h2>
-                  <p class="text-muted">Clientes</p>
+                  <p class="text-muted">Total Clientes</p>
                   </div>
                   </div>
                 </td>
               </tr>
-              <tr>
+            <tr>
+                <td>
+                  <div class="panel panel-box clearfix">
+                  <div class="panel-icon pull-left bg-red">
+                  <i class="glyphicon glyphicon-scale"></i>
+                  </div>
+                  <div class="panel-value pull-right">
+                  <h2 class="margin-top"> <?php  echo $medidor_noasignado['total']; ?> </h2>
+                  <p class="text-muted">Medidores sin Asignar</p>
+                  </div>
+                  </div>
+                </td> 
+               <td>
+                  <div class="panel panel-box clearfix">
+                  <div class="panel-icon pull-left bg-green">
+                  <i class="glyphicon glyphicon-scale"></i>
+                  </div>
+                  <div class="panel-value pull-right">
+                  <h2 class="margin-top"> <?php  echo $medidor_asignado['total']; ?> </h2>
+                  <p class="text-muted">Medidores Asignados</p>
+                  </div>
+                  </div>
+                </td> 
                 <td>
                   <div class="panel panel-box clearfix">
                   <div class="panel-icon pull-left bg-blue">
@@ -242,11 +266,26 @@ Plotly.newPlot('myDiv', data2);
                   </div>
                   <div class="panel-value pull-right">
                   <h2 class="margin-top"> <?php  echo $c_product['total']; ?> </h2>
-                  <p class="text-muted">Medidores</p>
+                  <p class="text-muted">Total Medidores</p>
                   </div>
                   </div>
                 </td>
-              
+            </tr>
+
+
+
+            <tr>   
+                <td>
+                  <div class="panel panel-box clearfix">
+                  <div class="panel-icon pull-left bg-green">
+                  <i class="glyphicon glyphicon-user"></i>
+                  </div>
+                  <div class="panel-value pull-right">
+                  <h2 class="margin-top"> <?php  echo $c_user['total']; ?> </h2>
+                  <p class="text-muted">Usuarios del Sistema</p>
+                  </div>
+                  </div>
+                </td>
                 <td>
                    <div class="panel panel-box clearfix">
                    <div class="panel-icon pull-left bg-yellow">
@@ -258,18 +297,18 @@ Plotly.newPlot('myDiv', data2);
                    </div>
                    </div>
                 </td>
-              
-                <td>
+                 <td> 
                   <div class="panel panel-box clearfix">
                   <div class="panel-icon pull-left bg-yellow">
                   <i class="glyphicon glyphicon-usd"></i>
                   </div>
                   <div class="panel-value pull-right">
-                  <h2 class="margin-top"> <?php  echo $c_sale['total']; ?></h2>
+                  <h2 class="margin-top"> <?php  echo $consumo_total['total']; ?></h2>
                   <p class="text-muted">Consumo total</p>
                   </div>
                   </div>
                 </td>
+                
               
               </tr>
           </tbody>

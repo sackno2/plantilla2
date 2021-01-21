@@ -62,7 +62,7 @@
                <td class="text-center"> <?php echo remove_junk($reconexiones['observacion']); ?></td>
                 <td class="text-center">
                   <div class="btn-group">
-                    <a href="edit_reconexion.php?id=<?php echo (int)$reconexiones['cod_orden_recon'];?>" class="btn btn-info btn-xs"  title="Editar" data-toggle="tooltip">
+                    <a href="edit_reconexion.php?id=<?php echo (int)$reconexiones['cod_cuenta'];?>" class="btn btn-info btn-xs"  title="Editar" data-toggle="tooltip">
                       <span class="glyphicon glyphicon-edit"></span>
                     </a>
                      <a href="delete_reconexion.php?id=<?php echo (int)$reconexiones['cod_orden_recon'];?>" class="btn btn-danger btn-xs"  title="Eliminar" data-toggle="tooltip">

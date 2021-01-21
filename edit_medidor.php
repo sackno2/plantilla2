@@ -81,7 +81,7 @@ if(!$medidor){
       <input type="text" name="num_medidor" class="form-control" id="num_medidor" value="<?php echo remove_junk($medidor['numero']);?>" autofocus required>
     </div>
     <div class="form-group col-md-2">
-      <label for="fecha_actual">Fecha</label>
+      <label for="fecha_actual">Fecha ingreso</label>
       <input type="text" name="fecha_actual" value="<?php echo remove_junk($medidor['fecha_crea']);?>" class="form-control" id="fecha_actual" autofocus readonly>
     </div>
   </div>

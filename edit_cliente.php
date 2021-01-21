@@ -64,7 +64,7 @@ if(!$cliente){
 
 
 
-	   $actualiza=("UPDATE inv_medidor SET asignado='SI' WHERE cod_medidor='$c_nummedi'");
+	   $actualiza=("UPDATE inv_medidor SET asignado='SI' WHERE numero='$c_nummedi'");
 	   $result1 =$db->query($actualiza);
 	   
 	   
@@ -72,7 +72,7 @@ if(!$cliente){
 		if($c_nummedi <> $cliente['num_medidor'])
 		{ 
 		
-		$actualiza2=("UPDATE inv_medidor SET asignado='NO' WHERE cod_medidor='$cliente[num_medidor]'");
+		$actualiza2=("UPDATE inv_medidor SET asignado='NO' WHERE numero='$cliente[num_medidor]'");
 	    $result2 =$db->query($actualiza2);  
 		   
 		}
@@ -248,7 +248,7 @@ if(!$cliente){
 		<?php while($row_m = mysqli_fetch_array($result_m)) 
 			{ ?>
            
-        <option value="<?php echo $row_m['cod_medidor']; ?>"><?php echo $row_m['cod_medidor']; ?></option>
+        <option value="<?php echo $row_m['numero']; ?>"><?php echo $row_m['numero']; ?></option>
                  
            <?php }; 
 		mysqli_free_result($result_m);
@@ -262,9 +262,21 @@ if(!$cliente){
     <div class="form-group col-md-4">
       <label for="estado_cli">Estado</label>
      
+     <?php
+      $estado="";
+      $estado="";
+      if (remove_junk($cliente['estado'])==="1"){
+        $estado="Inactivo";
+        $estado2="1";
+      }else{
+        $estado="Activo";
+        $estado2="2";
+      }
+
+       ?>
 
       <select id="estado_cli" name="estado_cli" class="form-control">
-        <option value="" <?php if($cliente['estado']==="1"){ $estado1="Inactivo";} else{ $estado1="Activo";} echo "selected";  ?>><?php echo $estado1; ?></option>
+        <option value="<?php echo $estado2; ?>" selected><?php echo $estado; ?></option>
         <option value="1">Inactivo</option>
         <option value="2">Activo</option>
       </select>
@@ -299,7 +311,7 @@ if(!$cliente){
   </div>-->
   <div class="row">
       <div class="form-group col-md-4" align="left">
-      <input type="submit" name="submit1" id="submit1" value="Buscar" class="btn btn-primary">
+      <a href="cliente.php" class="btn btn-primary">Regresar</a>  
       </div>
       <div class="form-group col-md-4" align="center">
       <input type="submit" name="edit_cliente" id="submit" value="Guardar" class="btn btn-primary">

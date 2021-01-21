@@ -76,12 +76,14 @@ if(!$rec_reclamo){
  
  <div class="form-row">
  	<div class="form-group col-md-6">
-      <label for="num_cuenta">Código de cuenta</label>
+      <label for="num_cuenta">Numero de cuenta</label>
       <input type="text" name="num_cuenta" class="form-control" id="num_cuenta" value="<?php echo remove_junk($rec_reclamo['num_cuenta']);?>" readonly>
     </div>
+
+
     <div class="form-group col-md-6">
-      <label for="fecha_rec">Fecha solución</label>
-      <input type="date" name="fecha_rec" class="form-control" id="fecha_rec" placeholder="dd/mm/aaaa" autofocus >
+      <label for="fecha_rec">Fecha reclamo</label>
+      <input type="date" name="fecha_rec" class="form-control" id="fecha_rec" value="<?php echo remove_junk($rec_reclamo['fecha_rec']);?>" placeholder="dd/mm/aaaa" autofocus >
     </div>
   </div>
   <div class="form-row"> 
@@ -122,8 +124,9 @@ if(!$rec_reclamo){
   <div class="form-group col-md-12">
       <label for="solucion_rec">SOLUCIONADO</label>
       <select name="solucion_rec" id="solucion_rec">
-        <option value="NO" selected>NO</option>
+        <option selected><?php echo remove_junk($rec_reclamo['solucion_rec']);?></option>
         <option value="SI">SI</option>
+        <option value="NO">NO</option>
       </select>	     
   </div>
  

@@ -298,6 +298,38 @@ function count_by_id2($table){
   }
 }
 
+function count_by_id3(){
+  global $db;
+
+    $sql3    = "SELECT COUNT(estado) AS total FROM inv_cliente WHERE estado='1'";
+    $result3 = $db->query($sql3);
+     return($db->fetch_assoc($result3)); 
+}
+
+function count_by_id4(){
+  global $db;
+
+    $sql4    = "SELECT COUNT(estado) AS total FROM inv_cliente WHERE estado='2'";
+    $result4 = $db->query($sql4);
+     return($db->fetch_assoc($result4)); 
+}
+
+function count_by_id5(){
+  global $db;
+
+    $sql5    = "SELECT COUNT(asignado) AS total FROM inv_medidor WHERE asignado='SI'";
+    $result5 = $db->query($sql5);
+     return($db->fetch_assoc($result5)); 
+}
+
+function count_by_id6(){
+  global $db;
+
+    $sql6    = "SELECT COUNT(asignado) AS total FROM inv_medidor WHERE asignado='NO'";
+    $result6 = $db->query($sql6);
+     return($db->fetch_assoc($result6)); 
+}
+
 function sum_by_lecturas_total($table){
   global $db;
   if(tableExists($table))
