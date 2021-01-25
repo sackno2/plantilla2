@@ -20,7 +20,7 @@
          <div class="pull-right">
            <a href="add_cliente.php" class="btn btn-primary">Agregar cliente</a>
            <a href="panel_reportes_cli.php" class="btn btn-primary">Reportes</a>
-           <a href="home.php" class="btn btn-primary" target="_blank">Regresar</a>
+           <a href="home.php" class="btn btn-primary" target="_self">Regresar</a>
          </div>
         </div>
 <!--tabla de prueba-->

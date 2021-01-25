@@ -36,7 +36,7 @@ function enviarDatosServicios(){
   //uso del medotod POST
   //archivo que realizará la operacion
   //registro.php
-  ajax.open("POST", "registro_otro_rec.php",true);
+  ajax.open("POST", "registro.php",true);
   //cuando el objeto XMLHttpRequest cambia de estado, la función se inicia
   ajax.onreadystatechange=function() {
 	  //la función responseText tiene todos los datos pedidos al servidor

@@ -91,7 +91,7 @@
     </div>
 
     <div class="pull-right">
-      <a href="home.php" class="btn btn-primary" target="_blank">Regresar</a>
+      <a href="home.php" class="btn btn-primary" target="_self">Regresar</a>
     </div>
 
      <input type="submit" name="add_tarifa" id="submit" value="Guardar" class="btn btn-primary">

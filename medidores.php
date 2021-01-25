@@ -21,7 +21,7 @@
          <div class="pull-right">
           <a href="add_medidor.php" class="btn btn-primary">Agregar Medidor</a>
           <a href="reportemedidor.php" class="btn btn-primary" target="_blank">Reporte</a>
-          <a href="home.php" class="btn btn-primary" target="_blank">Regresar</a>
+          <a href="home.php" class="btn btn-primary" target="_self">Regresar</a>
          </div>
         
         </div>

@@ -20,7 +20,7 @@
          <div class="pull-right">
           <a href="reclamo.php" class="btn btn-primary">Buscar cliente</a>
           <a href="reportereclamos.php" class="btn btn-primary" target="_blank">Reporte</a>
-          <a href="home.php" class="btn btn-primary" target="_blank">Regresar</a>
+          <a href="home.php" class="btn btn-primary" target="_self">Regresar</a>
          </div>
         </div>
 <!--tabla de prueba-->
