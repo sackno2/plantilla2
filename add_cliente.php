@@ -3,14 +3,13 @@
   require_once('includes/load.php');
   // Checkin What level user has permission to view this page
   page_require_level(2);
-  $all_categories = find_all('categories');
-  $all_photo = find_all('media');
+ 
   $clientes = join_inv_cliente_table();
 ?>
 <?php
   //echo $_POST['num_cuenta'];
  if(isset($_POST['add_cliente'])){
-   $req_fields = array('num_cuenta','fecha_actual','nombres_cli', 'apellidos_cli','fech_naci','direccion_cli','cod_departamento','cod_municipio','sexo_cli','dui','telefono_cli','celular_cli','nit','email_cli','num_medidor','lect_inicial','estado_cli');
+    $req_fields = array('num_cuenta','fecha_actual','nombres_cli', 'apellidos_cli','fech_naci','direccion_cli','cod_departamento','cod_municipio','sexo_cli','dui','telefono_cli','celular_cli','nit','email_cli','num_medidor','lect_inicial','estado_cli');
    validate_fields($req_fields);
    if(empty($errors)){
      //$c_codcliente  = remove_junk($db->escape($_POST['cod_cliente']));*/
@@ -41,12 +40,85 @@
      $date    = make_date();
      $query  = "INSERT INTO inv_cliente (num_cuenta,fecha_crea, nombre,apellido,fecha_naci,direccion,cod_municipio,cod_departamento, sexo, dui,telefono, celular,nit,mail,num_medidor,lectura_ini,estado) VALUES ('{$c_numcuenta}','{$c_fechactual}','{$c_nombres}','{$c_apellidos}','{$c_fechanaci}', '{$c_direccion}','{$c_municipio}','{$c_departamento}','{$c_sexo}','{$c_dui}','{$c_telefono}', '{$c_celular}','{$c_nit}','{$c_correo}','{$c_nummedi}','{$c_lectmedi}','{$c_estado}')";
      $query .=" ON DUPLICATE KEY UPDATE num_cuenta='{$c_numcuenta}'";
+
+     $actualiza=("UPDATE inv_medidor SET asignado='SI' WHERE numero='$c_nummedi'");
+   $result1 =$db->query($actualiza);
+
+        
 	 
-	 $actualiza=("UPDATE inv_medidor SET asignado='SI' WHERE numero='$c_nummedi'");
-	 $result1 =$db->query($actualiza);
-	 
-     if($db->query($query)){
-       $session->msg('s',"Cliente agregado exitosamente. ");
+  if($db->query($query)){
+      $session->msg('s',"Cliente agregado exitosamente. ");
+
+      //Codigo agregar lectura inicial 
+     
+       //$li_numcuenta   = remove_junk($db->escape($_POST['num_cuenta']));
+
+        //$li_numcuenta   = $c_numcuenta; 
+
+$date = explode("/",date('d/m/Y'));
+  list($day,$month,$year) = $date;
+//echo $month.'/'.$day.'/'.$year.' '.$hour.':'.$min.':'.$sec;
+
+//output: 03/08/2020 02:01:06
+
+
+        //$c_fechactual   = remove_junk($db->escape($_POST['fecha_actual']));
+        //$li_mes   = remove_junk($db->escape($_POST['mes_ini']));
+
+        
+        $li_mes   = $month;
+        $li_anio = $year;
+        
+        
+        //calcular el ultimo dia del mes para fecha lectura
+        function getUltimoDiaMes($elAnio,$elMes) {
+        return date("d",(mktime(0,0,0,$elMes+1,1,$elAnio)-1));
+        }
+
+      //Ejemplo de uso ultimo dia
+        $ultimoDia = getUltimoDiaMes($li_anio,$li_mes);
+        $li_fecha_lect = ($li_anio).'-'.($li_mes).'-'.$ultimoDia; 
+        
+        //$li_fecha_lect = $li_anio.'-'.$li_mes.'-'.$ultimoDia; 
+        //$li_fecha_lect  = remove_junk($db->escape($_POST['fecha_lect_li']));
+        $li_lec_ant  = 0;
+        $li_lec_act  = 0;
+        //$li_consumo =  $li_lec_act - $li_lec_ant;
+        $li_consumo = $li_lec_act-$li_lec_ant;
+        $li_user  = remove_junk($db->escape($_POST['user_lect']));
+        if (($_POST['lec_ant_li'])>($_POST['lec_act_li'])) {
+            $li_cobro = 'v';
+            } else {
+              $li_cobro = 'c';
+              }
+       // no se permite la misma lectura inicial para la cuenta y mes y año
+        $query_cta = "SELECT * FROM lecturas WHERE num_cuenta='$c_numcuenta'and mes='$li_mes' and anio='$li_anio'";
+        $resul_cta = $db->query($query_cta);
+        if($resul_cta->num_rows >= 1){    
+        
+                //if($db->query($query_cta)){
+                $session->msg('d',"La Carga Inicial de Lectura para la cuenta ya fue agregada anteriormente".$num_cuenta);
+                 //mysql_free_result($query_cta);
+                redirect('cliente.php', false);
+                }
+                else
+                {
+                //efectua registro inicial de lectura, marca el recibo
+                $query2   = "INSERT INTO lecturas (num_cuenta,mes,anio,fecha_lectura,lectura_anterior, lectura_actual, consumo, user, cobro ) VALUES ('{$c_numcuenta}','{$li_mes}','{$li_anio}','{$li_fecha_lect}','{$li_lec_ant}', '{$li_lec_act}','{$li_consumo}', '{$li_user}', '{$li_cobro}')";
+                if($db->query($query2)){
+                     //$session->msg('s',"Lectura inical agregada exitosamente.".$num_cuenta);
+                     redirect('cliente.php', false);
+                    } 
+               } 
+
+               // Fin codigo agregar lectura
+
+   
+
+
+
+
+
        redirect('add_cliente.php', false);
      } else {
        $session->msg('d',' Lo siento, registro falló.');
@@ -200,6 +272,14 @@
         <option value="2">Activo</option>
       </select>
     </div>
+  </div>
+
+  <div class="form-group col-md-4">
+      <label for="user_lect">Usuario</label>
+     <?php  if ($session->isUserLoggedIn(true)); ?>  
+     <input type="user_lect" name="user_lect" class="form-control" id="user_lect" value="<?php echo remove_junk(ucfirst($user['name']));?>" readonly>
+   
+        
   </div>
 <!--  <div class="row">
   <div class="form-group">

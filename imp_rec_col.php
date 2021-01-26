@@ -10,8 +10,8 @@
  * isset($_GET['vuehtml']) is not mandatory
  * it allow to display the result in the HTML format
  */
-$mes=$_POST['mes'];//agregado
-$anio=$_POST['anio'];//agregado
+//$mes=$_POST['mes'];//agregado
+//$anio=$_POST['anio'];//agregado
 // 
     // get the HTML
     ob_start();

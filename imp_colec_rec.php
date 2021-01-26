@@ -123,13 +123,10 @@ if(isset($_POST['imp_colec_rec'])){
         if($boton == 'SI')
 	{
 	?>
-        <a href="imp_rec_col.php?mes=<?php echo $mes1;?>&anio=<?php echo $anio1;?>"target="iframe_report" class="btn btn-primary">Mostrar Recibos</a>
-        <!--
-        <a href="imp_rec_col.php?mes=1&anio=2020 "target="iframe_report" class="btn btn-primary">Mostrar Recibos</a> 
-        <a href="imp_rec_col.php?mes=<?php echo $mes1;?>&anio=<?php echo $anio1;?>"target="iframe_report" class="btn btn-primary">Mostrar Recibos</a>
+        <a href="imp_rec_col_1.php?mes=<?php echo $mes1;?>&anio=<?php echo $anio1;?> "target="iframe_report" class="btn btn-primary">Mostrar Recibos</a> 
+        <!--<a href="imp_rec_col.php?mes=<?php echo $mes1;?>&anio=<?php echo $anio1;?>"target="iframe_report" class="btn btn-primary">Mostrar Recibos</a>
         <a href="listado_rec_imp2.php?mes=<?php echo $mes1;?>&anio=<?php echo $anio1;?>"target="iframe_report" class="btn btn-primary">Mostrar Recibos</a>
         <a href="imp_rec_col.php?mes=<?php echo $mes1;?>&anio=<?php echo $anio1;?>"target="iframe_report" class="btn btn-primary">Mostrar Recibos</a>!-->
-        
          <?php	}?>
 	<tr>
 	<td align="center">

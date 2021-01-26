@@ -1,15 +1,62 @@
 <?php
-include('../conexion/conexion.php'); //incluye datos de la conexion a la base de datos
-include('../conexion/sesion.php');	// incluye datos de la sesion
-include('../includes/fechas.php');	//
-include('../includes/mes_letras.php');	//
+$page_title = 'Emision de recibo de otros servicios';
+  require_once('includes/load.php');
+  // Checkin What level user has permission to view this page
+  page_require_level(2);
+  error_reporting(0);
+
+function mes_letras($mes)
+ {
+    switch($mes) 
+   {
+      case "1":
+         $month = "Enero";
+         break;
+      case "2":
+         $month = "Febrero";
+         break;
+      case "3":
+         $month = "Marzo";
+         break;
+      case "4":
+         $month = "Abril";
+         break;
+      case "5":
+         $month = "Mayo";
+         break;
+      case "6":
+         $month = "Junio";
+         break;
+      case "7":
+         $month = "Julio";
+         break;
+      case "8":
+         $month = "Agosto";
+         break;
+      case "9":
+         $month = "Septiembre";
+         break;
+      case "10":
+         $month = "Octubre";
+         break;
+      case "11":
+         $month = "Noviembre";
+         break;
+      case "12":
+         $month = "Diciembre";
+         break;
+   }
+   
+   return $month;
+}
+
+
+require_once(dirname(__FILE__)."/html2pdf/html2pdf.class.php");
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"[]>
 <html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="es-419" xml:lang="es-419">
-<head>
-	<link rel="shortcut icon" href="images/favicon.ico"><!--incluye favicon (icono pequeño de la pestaña del navegador)-->
-    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
-<head><title>ACASAPUE - Imprimir Recibo</title>
+
 
 </style>
    
@@ -17,7 +64,7 @@ include('../includes/mes_letras.php');	//
 						
 			<style type="text/css" media="print">
 			Div.PrintArea{page-break-after:always;writing-mode:lr-tb;}
-			#sidebar,#header,#nav,#footer,#masthead, #navbar,{color:#FFFFFF;display:none;}
+			#sidebar,#header,#nav,#footer,#masthead, #navbar{color:#FFFFFF;display:none;}
 			.NomPrint{display:none !important;}
 			</style>
    
@@ -86,7 +133,7 @@ include('../includes/mes_letras.php');	//
 			}		
 			</STYLE>			
 
-</head>
+
 <body onload="window.print()">
 <font face="arial" size="1">
 <?php
@@ -99,7 +146,7 @@ $num_recibo_post = $_GET['recibo'];
 
 
 								// EXTRAE DATOS DE TABLA RECIBO
-								$datos_recibo = mysqli_query($server, "SELECT * FROM recibos WHERE num_recibo='$num_recibo_post'");
+								$datos_recibo = "SELECT * FROM recibos WHERE num_recibo='$num_recibo_post'";
                                                                 $result_datos_recibo = $db->query($datos_recibo); 
                                                                 
 								if($recibo_ok = mysqli_fetch_array($result_datos_recibo))						
@@ -122,23 +169,25 @@ $num_recibo_post = $_GET['recibo'];
 								
 								
 								
-								//EXTRAER DATOS DE TABLA CUENTA						
+								//EXTRAER DATOS DE TABLA CLIENTE						
 								$cta = "SELECT * FROM inv_cliente WHERE num_cuenta='$num_cuenta'";	
                                                                 $result_cta = $db->query($cta); 
-								if($cta_ok = mysqli_fetch_array($cta))
+								if($cta_ok = mysqli_fetch_array($result_cta))
 								$num_cuenta = $cta_ok["num_cuenta"];
 								$cod_cliente = $cta_ok["cod_cliente"];
-								$cod_medidor = $cta_ok["cod_medidor"];
+								$num_medidor = $cta_ok["num_medidor"];
+								$nombre = $cta_ok["nombre"];
+								$apellido = $cta_ok["apellido"];
 								
 								
 
 								
 								//obtener datos del cliente
-								$cliente = "SELECT * FROM cliente WHERE cod_cliente='$cod_cliente'";	
-                                                                $result_cliente = $db->query($cliente); 
-								if($cliente_ok = mysqli_fetch_array($result_cliente))
-								$nombre = $cliente_ok["nombre"];
-								$apellido = $cliente_ok["apellido"];
+								//$cliente = "SELECT * FROM inv_cliente WHERE cod_cliente='$cod_cliente'";	
+                                                                //$result_cliente = $db->query($cliente); 
+								//if($cliente_ok = mysqli_fetch_array($result_cliente))
+								//$nombre = $cliente_ok["nombre"];
+								//$apellido = $cliente_ok["apellido"];
 								
 								//CONSUMO								
 								//obtener datos de la lectura del mes a facturar
@@ -153,10 +202,12 @@ $num_recibo_post = $_GET['recibo'];
 								$lectura_actual = $lectura_ok["lectura_actual"];
 								$consumo = $lectura_ok["consumo"];
 								
-								//CONSUMO HISTORIAL
-								//para el historial de los ultimos tres meses
+								
+                                                                //CONSUMO HISTORIAL
+								//HASTA AQUI
+                                                                //para el historial de los ultimos tres meses
 								$mes_desc1=$mes-03;//descuenta 3 meses
-								$historial1 = "SELECT * FROM lectura WHERE num_cuenta='$num_cuenta' AND mes='$mes_desc1' AND anio='$anio' ORDER BY num_cuenta DESC LIMIT 0,4";			
+								$historial1 = "SELECT * FROM lecturas WHERE num_cuenta='$num_cuenta' AND mes='$mes_desc1' AND anio='$anio' ORDER BY num_cuenta DESC LIMIT 0,4";			
                                                                 $result_historial1 = $db->query($historial1); 
                                                                 
 								if($historial_ok1 = mysqli_fetch_array($result_historial1))
@@ -164,7 +215,7 @@ $num_recibo_post = $_GET['recibo'];
 								$consumo1=$historial_ok1["consumo"];
 								
 								$mes_desc2=$mes-02;//descuenta 2 meses
-								$historial2 = "SELECT * FROM lectura WHERE num_cuenta='$num_cuenta' AND mes='$mes_desc2' AND anio='$anio' ORDER BY num_cuenta";			
+								$historial2 = "SELECT * FROM lecturas WHERE num_cuenta='$num_cuenta' AND mes='$mes_desc2' AND anio='$anio' ORDER BY num_cuenta";			
                                                                 $result_historial2 = $db->query($historial2); 
                                                                 
 								if($historial_ok2 = mysqli_fetch_array($result_historial2))
@@ -172,7 +223,7 @@ $num_recibo_post = $_GET['recibo'];
 								$consumo2=$historial_ok2["consumo"];
 								
 								$mes_desc3=$mes-01;//descuenta 1 mes
-								$historial3 = "SELECT * FROM lectura WHERE num_cuenta='$num_cuenta' AND mes='$mes_desc3' AND anio='$anio' ORDER BY num_cuenta";			
+								$historial3 = "SELECT * FROM lecturas WHERE num_cuenta='$num_cuenta' AND mes='$mes_desc3' AND anio='$anio' ORDER BY num_cuenta";			
 								$result_historial3 = $db->query($historial3); 
                                                                 
                                                                 if($historial_ok3 = mysqli_fetch_array($result_historial3))
@@ -181,7 +232,7 @@ $num_recibo_post = $_GET['recibo'];
 								
 								//TARIFAS PARA HISTORIAS
 								//obtener datos del valor por consumo (segun rango y tarifa)
-								$tarifa1 = "SELECT * FROM tarifa ORDER BY cod_tarifa LIMIT 0,3";	
+								$tarifa1 = "SELECT * FROM inv_tarifa ORDER BY cod_tarifa LIMIT 0,3";	
                                                                 $result_tarifa1 = $db->query($tarifa1); 
                                                                 
 								if($tarifa_ok1 = mysqli_fetch_array($result_tarifa1))
@@ -191,7 +242,7 @@ $num_recibo_post = $_GET['recibo'];
 								$precio_tarifa1 = $tarifa_ok1["precio"];
 								
 								//obtener datos del valor por consumo (segun rango y tarifa)
-								$tarifa2 = "SELECT * FROM tarifa ORDER BY cod_tarifa LIMIT 1,3";			
+								$tarifa2 = "SELECT * FROM inv_tarifa ORDER BY cod_tarifa LIMIT 1,3";			
 								$result_tarifa2 = $db->query($tarifa2); 
                                                                 
                                                                 if($tarifa_ok2 = mysqli_fetch_array($result_tarifa2))
@@ -201,7 +252,7 @@ $num_recibo_post = $_GET['recibo'];
 								$precio_tarifa2 = $tarifa_ok2["precio"];
 								
 								//obtener datos del valor por consumo (segun rango y tarifa)
-								$tarifa3 = "SELECT * FROM tarifa ORDER BY cod_tarifa LIMIT 2,3";	
+								$tarifa3 = "SELECT * FROM inv_tarifa ORDER BY cod_tarifa LIMIT 2,3";	
                                                                 $result_tarifa3 = $db->query($tarifa3); 
                                                                 
 								if($tarifa_ok3 = mysqli_fetch_array($result_tarifa3))
@@ -325,7 +376,7 @@ $num_recibo_post = $_GET['recibo'];
 									//$cod_servicio =$recibo_linea_ok["cod_servicio"];	
 									//$costo =$recibo_linea_ok["costo"];
 									
-									$consultar_servi = "SELECT * FROM servicio WHERE cod_servicio='$recibo_linea_ok[cod_servicio]'";
+									$consultar_servi = "SELECT * FROM inv_servicio WHERE cod_servicio='$recibo_linea_ok[cod_servicio]'";
 									$result_recibo_linea = $db->query($consultar_servi);
                                                                         $Datos_servi = mysqli_fetch_array($result_recibo_linea);
 									
@@ -485,7 +536,7 @@ $num_recibo_post = $_GET['recibo'];
 									//$cod_servicio =$recibo_linea_ok["cod_servicio"];	
 									//$costo =$recibo_linea_ok["costo"];
 									
-									$consultar_servi = mysqli_query($server, "SELECT * FROM servicio WHERE cod_servicio='$recibo_linea_ok[cod_servicio]'");
+									$consultar_servi = "SELECT * FROM servicio WHERE cod_servicio='$recibo_linea_ok[cod_servicio]'";
 									$result_consultar_servi= $db->query($consultar_servi);
                                                                         
                                                                         $Datos_servi = mysqli_fetch_array($result_consultar_servi);
@@ -559,4 +610,26 @@ $num_recibo_post = $_GET['recibo'];
 </table>
 </font>
 </body>
-		
+
+ <?php
+ $content = ob_get_clean();
+ //$content= ob_clean();
+ //require_once('html2pdf/html2pdf.class.php');
+ try {
+    //$pdf = new HTML2PDF('L','letter','es','UTF-8');//L y P*/
+    //$pdf->pdf->SetDisplayMode('fullpage');
+    //ob_clean();
+    //$pdf -> writeHTML($content);
+   // $pdf -> pdf ->IncludeJS('print(TRUE)');
+    //$pdf -> output('recibos.pdf');
+     $html2pdf = new HTML2PDF("P", "letter", "es");
+     $html2pdf->setDefaultFont('Arial');
+     $html2pdf->pdf->SetDisplayMode("fullpage");
+     $html2pdf->writeHTML($content, isset($_GET["vuehtml"]));
+     $html2pdf->Output("recibos_individual.pdf");
+    
+ }
+ catch(HTML2PDF_exception $e) {
+       echo $e;
+     exit;
+   }

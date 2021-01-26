@@ -84,7 +84,7 @@
                                                         <tr>
 							
 							<td align="center">
-                                                            <a href="imp_copia_rec.php" class="btn btn-primary">Impresion Copia de recibo</a>							
+                                                            <a href="copia_recibo.php" class="btn btn-primary">Impresion Copia de recibo</a>							
 							
 								
 							</td>							

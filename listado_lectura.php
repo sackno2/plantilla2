@@ -152,7 +152,7 @@ $proximo_mes_letra= mes_letras("$proximo_mes");
               <tr>
                 <td class="text-center"><?php echo count_id();?></td>
                 
-                <td class="text-center"> <?php echo remove_junk($clientes['nombre']); ?></td>
+                <td class="text-center"> <?php echo remove_junk($clientes['nombre']);?></td>
                 <td class="text-center"> <?php echo remove_junk($clientes['apellido']); ?></td>
                 <td class="text-center"> <?php echo remove_junk($clientes['num_cuenta']); ?></td>
                 <input type='hidden' name='num_cuenta' value='<?php echo remove_junk($clientes['num_cuenta']); ?>'>
@@ -184,3 +184,4 @@ $proximo_mes_letra= mes_letras("$proximo_mes");
         echo $e;
         exit;
     }
+?>

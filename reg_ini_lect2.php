@@ -10,7 +10,8 @@
 <?php
  //$cta_lectura="";
  $salida="";
- $query = "SELECT * FROM inv_cliente ORDER By cod_cliente";
+ //$query = "SELECT * FROM inv_cliente ORDER By cod_cliente";
+ 	$query = ("SELECT c.* FROM oswa_inv.inv_cliente c WHERE NOT EXISTS (SELECT * FROM oswa_inv.lecturas l WHERE c.num_cuenta = l.num_cuenta)");
  //$query2 = "SELECT * FROM lecturas ORDER By cod_lectura";
  
  

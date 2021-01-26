@@ -16,7 +16,7 @@ if(!$cliente){
 
 <?php
  if(isset($_POST['edit_cliente'])){
-    $req_fields = array('num_cuenta','fecha_actual','nombres_cli', 'apellidos_cli','fech_naci','direccion_cli','cod_departamento','cod_municipio','sexo_cli','dui','telefono_cli','celular_cli','nit','email_cli','num_medidor','lect_inicial','estado_cli');
+    $req_fields = array('num_cuenta','fecha_actual','nombres_cli', 'apellidos_cli','fech_naci','direccion_cli','cod_departamento','cod_municipio','sexo_cli','dui','telefono_cli','celular_cli','nit','email_cli','num_medidor','estado_cli');
  
  //   validate_fields($req_fields);
 
@@ -39,7 +39,6 @@ if(!$cliente){
      $c_nit   = remove_junk($db->escape($_POST['nit']));
      $c_correo  = remove_junk($db->escape($_POST['email_cli']));
 	   $c_nummedi  = remove_junk($db->escape($_POST['num_medidor']));
-     $c_lectmedi   = remove_junk($db->escape($_POST['lect_inicial']));
     
      if (is_null($_POST['estado_cli']) || $_POST['estado_cli'] === "") {
        $media_id = '0';
@@ -59,7 +58,7 @@ if(!$cliente){
 	   $query  .=" WHERE cod_cliente ='$cliente[cod_cliente]'";
 	   */
 	   
-     $query = ("UPDATE inv_cliente SET num_cuenta='$c_numcuenta', fecha_crea='$c_fechactual', nombre='$c_nombres', apellido='$c_apellidos', fecha_naci= '$c_fechanaci', direccion='$c_direccion', cod_municipio='$c_municipio', cod_departamento='$c_departamento',  sexo='$c_sexo',  dui='$c_dui', telefono='$c_telefono', celular='$c_celular', nit= '$c_nit', mail='$c_correo', num_medidor='$c_nummedi', lectura_ini='$c_lectmedi', estado='$c_estado' WHERE cod_cliente ='$cliente[cod_cliente]'"); 
+     $query = ("UPDATE inv_cliente SET num_cuenta='$c_numcuenta', fecha_crea='$c_fechactual', nombre='$c_nombres', apellido='$c_apellidos', fecha_naci= '$c_fechanaci', direccion='$c_direccion', cod_municipio='$c_municipio', cod_departamento='$c_departamento',  sexo='$c_sexo',  dui='$c_dui', telefono='$c_telefono', celular='$c_celular', nit= '$c_nit', mail='$c_correo', num_medidor='$c_nummedi', estado='$c_estado' WHERE cod_cliente ='$cliente[cod_cliente]'"); 
 
 
 
@@ -232,7 +231,7 @@ if(!$cliente){
     <input type="mail" name="email_cli" class="form-control" id="email_cli" placeholder="xxxxxx@yyyyyy.zzz" value="<?php echo remove_junk($cliente['mail']); ?>">
   </div>
 <div class="form-row">
-    <div class="form-group col-md-4">
+    <div class="form-group col-md-6">
      <?php
 		// Consulta la tabla medidor para obtenerla lista del select
 		
@@ -255,11 +254,8 @@ if(!$cliente){
 		?>      
       </select>
     </div>
-    <div class="form-group col-md-4">
-      <label for="lec_inicial">Lectura inicial</label>
-      <input type="text" name="lect_inicial" class="form-control" id="lect_inicial" value="<?php echo remove_junk($cliente['lectura_ini']); ?>">
-    </div>
-    <div class="form-group col-md-4">
+   
+    <div class="form-group col-md-6">
       <label for="estado_cli">Estado</label>
      
      <?php

@@ -62,10 +62,10 @@
       <span>Pagos</span>
     </a>
     <ul class="nav submenu">
-      <li><a href="recibos.php">Emisión de recibos</a> </li>
-      <li><a href="">Registro de pagos</a> </li>
-      <li><a href="">Anulación de recibos</a> </li>
-      <li><a href="">Control de mora</a> </li>
+     <li><a href="recibos.php">Emisión de recibos</a> </li>
+      <li><a href="pagos.php">Registro de pagos</a> </li>
+      <li><a href="anulacion.php">Anulación de recibos</a> </li>
+      <li><a href="control_mora.php">Control de mora</a> </li>
    </ul>
   </li>
   

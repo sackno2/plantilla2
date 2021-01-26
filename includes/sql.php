@@ -1056,4 +1056,11 @@ function join_lecturas_table_lista(){
      }
 }
 
+//Inicializar lectura a traves de numero de cuenta
+function join_lecturas_table_lista_cta(){
+    global $db;
+    $sql = "SELECT c.* FROM oswa_inv.inv_cliente c WHERE NOT EXISTS (SELECT * FROM oswa_inv.lecturas l WHERE c.num_cuenta = i.num_cuenta)";
+    return find_by_sql($sql);
+   }
+
 ?>

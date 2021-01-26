@@ -14,6 +14,50 @@ $lec_cliente = find_by_id2('inv_cliente',(int)$_GET['id']);
  //$session->msg("d","Cliente no encontrado por Codigo.",$rec_cliente);
  //redirect('reg_lectura.php');
 //}
+function mes_letras($mes)
+ {
+    switch($mes) 
+   {
+      case "1":
+         $month = "Enero";
+         break;
+      case "2":
+         $month = "Febrero";
+         break;
+      case "3":
+         $month = "Marzo";
+         break;
+      case "4":
+         $month = "Abril";
+         break;
+      case "5":
+         $month = "Mayo";
+         break;
+      case "6":
+         $month = "Junio";
+         break;
+      case "7":
+         $month = "Julio";
+         break;
+      case "8":
+         $month = "Agosto";
+         break;
+      case "9":
+         $month = "Septiembre";
+         break;
+      case "10":
+         $month = "Octubre";
+         break;
+      case "11":
+         $month = "Noviembre";
+         break;
+      case "12":
+         $month = "Diciembre";
+         break;
+   }
+   
+   return $month;
+}
 ?>
 
 <?php 
@@ -22,19 +66,19 @@ $lec_cliente = find_by_id2('inv_cliente',(int)$_GET['id']);
  if(isset($_POST['reg_lectura'])){
      echo $_POST['num_cuenta'];
      
-    $req_fields = array('num_cuenta','mes_ini','anio_ini','lec_ant_li','lec_act_li','user_lect');
+    $req_fields = array('num_cuenta','mes_ini_n','anio_ini','lec_ant_li','lec_act_li','user_lect');
     validate_fields($req_fields);
     if(empty($errors)){
         $li_numcuenta   = remove_junk($db->escape($_POST['num_cuenta']));
-        $li_mes   = remove_junk($db->escape($_POST['mes_ini']));
+        $li_mes   = remove_junk($db->escape($_POST['mes_ini_n']));
         $li_anio   = remove_junk($db->escape($_POST['anio_ini']));
         //calcular el ultimo dia del mes para fecha lectura
         function getUltimoDiaMes($elAnio,$elMes) {
         return date("d",(mktime(0,0,0,$elMes+1,1,$elAnio)-1));
         }
         //Ejemplo de uso ultimo dia
-        $ultimoDia = getUltimoDiaMes(($_POST['anio_ini']),($_POST['mes_ini']));
-        $li_fecha_lect = ($_POST['anio_ini']).'-'.($_POST['mes_ini']).'-'.$ultimoDia;	
+        $ultimoDia = getUltimoDiaMes(($_POST['anio_ini']),($_POST['mes_ini_n']));
+        $li_fecha_lect = ($_POST['anio_ini']).'-'.($_POST['mes_ini_n']).'-'.$ultimoDia;	
         
         //$li_fecha_lect = $li_anio.'-'.$li_mes.'-'.$ultimoDia;	
         //$li_fecha_lect  = remove_junk($db->escape($_POST['fecha_lect_li']));
@@ -120,62 +164,46 @@ $lec_cliente = find_by_id2('inv_cliente',(int)$_GET['id']);
   <div class="form-row"> 
   <div class="form-group col-md-6">
     <label for="lec_ant_li">Lectura anterior</label>
-    <input type="number" name="lec_ant_li" class="form-control" min="0" value="0" >  
+    <input type="number" name="lec_ant_li" class="form-control" min="0" value="0" readonly >  
   </div>  
   
   <div class="form-group col-md-6">
     <label for="lec_act_li">Lectura actual</label>
-    <input type="number" name="lec_act_li" class="form-control" min="1" >  
+    <input type="number" name="lec_act_li" class="form-control" min="0" value="0" readonly>  
   </div>  
  
+<?php $date = explode("/",date('d/m/Y'));
+  list($day,$month,$year) = $date;
+//echo $month.'/'.$day.'/'.$year.' '.$hour.':'.$min.':'.$sec;
+
+//output: 03/08/2020 02:01:06
+
+
+       
+        
+        $li_mes_i   = $month;
+        $li_anio_i = $year;
+        $li_mes_letra= mes_letras($li_mes_i);
+
+
+
+?>
   </div>
    <div class="form-row">
  	<div class="form-group col-md-5">
       <label for="mes_ini">Mes Inicial</label>
-      <select id="mes_ini" name="mes_ini" class="form-control" >
-        <option value=''>-Seleccione Mes</option>
-	<option value='01'> 1-Enero</option>
-	<option value='02'> 2-Febrero</option>
-	<option value='03'> 3-Marzo</option>
-	<option value='04'> 4-Abril</option>
-	<option value='05'> 5-Mayo</option>
-	<option value='06'> 6-Junio</option>
-        <option value='07'> 7-Julio</option>
-	<option value='08'> 8-Agosto</option>
-	<option value='09'> 9-Septiembre</option>
-	<option value='10'>10-Octubre</option>
-	<option value='11'>11-Noviembre</option>
-	<option value='12'>12-Diciembre</option>
-      </select>
+      <input type="text" name="mes_ini" class="form-control" min="0" value="<?php echo $li_mes_letra;?>" readonly>
+
+      <input type="hidden" name="mes_ini_n" class="form-control" min="0" value="<?php echo $li_mes_i ;?>" readonly >
+      
     </div>
   
 
     <div class="form-group col-md-3">
         <label for="anio_ini">Año Inicial</label>
-      <?php
-	$anio_1 = date('Y', strtotime('-1 year'));
-	$anio_2 = date('Y', strtotime('-2 year'));
-	$anio_3 = date('Y', strtotime('-3 year'));
-	$anio_4 = date('Y', strtotime('-4 year'));
-	$anio_5 = date('Y', strtotime('-5 year'));
-	$anio_6 = date('Y', strtotime('-6 year'));
-	$anio_7 = date('Y', strtotime('-7 year'));
-	$anio_8 = date('Y', strtotime('-8 year'));
-	$anio_9 = date('Y', strtotime('-9 year'));
-										
-	?>
-	<select name="anio_ini" class="form-control"  required >
-	<option value="<?php echo date('Y');?>"><?php echo date('Y');?></option>
-	<option value="<?php echo $anio_1;?>"><?php echo $anio_1;?></option>
-	<option value="<?php echo $anio_2;?>"><?php echo $anio_2;?></option>
-        <option value="<?php echo $anio_3;?>"><?php echo $anio_3;?></option>
-	<option value="<?php echo $anio_4;?>"><?php echo $anio_4;?></option>
-	<option value="<?php echo $anio_5;?>"><?php echo $anio_5;?></option>
-	<option value="<?php echo $anio_6;?>"><?php echo $anio_6;?></option>
-	<option value="<?php echo $anio_7;?>"><?php echo $anio_7;?></option>
-	<option value="<?php echo $anio_8;?>"><?php echo $anio_8;?></option>
-	<option value="<?php echo $anio_9;?>"><?php echo $anio_9;?></option>
-	</select>
+
+        <input type="number" name="anio_ini" class="form-control" min="0" value="<?php echo $li_anio_i;?>" readonly>
+      
        
     </div>
      
