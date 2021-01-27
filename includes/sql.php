@@ -1063,4 +1063,9 @@ function join_lecturas_table_lista_cta(){
     return find_by_sql($sql);
    }
 
+function join_lecturas_reporte(){
+    global $db;
+    $sql = "SELECT * FROM reportlecturas2pdf";
+    return find_by_sql($sql);
+   }
 ?>

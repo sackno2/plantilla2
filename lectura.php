@@ -38,7 +38,7 @@
                                                         
 							<td align="center">
 								
-                                                            <a href="toma_lectura.php" class="btn btn-primary" align="center">Listado de lectura</a>
+                                                            <a href="listado_lecturasPDF.php" class="btn btn-primary" align="center" target="_blank">Listado de lectura</a>
                                                             
 							</td>							
                                                         </tr>		

@@ -60,7 +60,7 @@
                 <td class="text-center"> <?php echo "$".remove_junk($servicios['costo']); ?></td>
               </tr>
              <?php endforeach; ?>
-            </tbody>
+           </tbody>
     </table> 
  </page> 
 <?php

@@ -98,8 +98,7 @@ $ultimo_mes=date("n",strtotime($fecha_ultima_f));
 $ultimo_anio=date("Y",strtotime($fecha_ultima_f));
  ?>
 <?php endforeach; ?>
-<?php
-?>
+
  
 <?php
 //Caluculando nueva fecha para lectura
@@ -114,6 +113,7 @@ $proximo_mes_letra= mes_letras("$proximo_mes");
     //$session->msg('d',"No existen registros de lectura, debe iniciarlizas");
   $lectura = join_lecturas_table();
    $cliente= join_inv_cliente_table();
+   $reporte = join_lecturas_reporte();
  ?>   
 
 
@@ -121,19 +121,11 @@ $proximo_mes_letra= mes_letras("$proximo_mes");
  <h3 align="center">Listado de toma de lecturas</h3>
  <table width="621" border="0" align="center" cellspacing="1">
   <tr>
-    <td width="100">Mes:<?php echo $proximo_mes_letra;?></td>
-    <td width="100">Año:<?php echo $proximo_anio; ?></td>
-    <td width="300">Fecha de toma de lectura:<?php echo date('Y-m-d'); ?></td>
-    
-   </tr>
-  
-  
+    <td class="text-center" width="100">Mes:<?php echo $proximo_mes_letra;?></td>
+    <td class="text-center" width="100">Año:<?php echo $proximo_anio; ?></td>
+    <td class="text-center" width="300">Fecha de toma de lectura:<?php echo date('Y-m-d');?></td>
+  </tr> 
 </table>
-
- 
-
-
- 
  <table class="table table-bordered" border="1" align="center" cellpadding="3" >
             <thead>
               <tr>
@@ -143,45 +135,42 @@ $proximo_mes_letra= mes_letras("$proximo_mes");
                 <th class="text-center" style="width: 10%;"> Cuenta </th>
                 <th class="text-center" style="width: 15%;"> Lectura Anterior</th>
                 <th class="text-center" style="width: 15%;"> Lectura Actual</th>
-                </tr>
-               </thead> 
-                <tbody>
-                   <?php foreach ($cliente as $clientes):?>
-                
-                
+              </tr>
+             </thead>
+               <tbody> 
+               <?php foreach ($reporte as $reportes):?>    
               <tr>
                 <td class="text-center"><?php echo count_id();?></td>
-                
-                <td class="text-center"> <?php echo remove_junk($clientes['nombre']); ?></td>
-                <td class="text-center"> <?php echo remove_junk($clientes['apellido']); ?></td>
-                <td class="text-center"> <?php echo remove_junk($clientes['num_cuenta']); ?></td>
-                <input type='hidden' name='num_cuenta' value='<?php echo remove_junk($clientes['num_cuenta']); ?>'>
-                 
-                <?php $n_cta= remove_junk($clientes['num_cuenta']);
-                      $dato_cta= find_by_cta_mes_an('lecturas',$n_cta,$ultimo_mes,$ultimo_anio); ?>
-                <td class="text-center"> <?php echo remove_junk($dato_cta['lectura_actual']); ?></td>
-                 <input type='hidden' name='lectura_anterior' value='<?php echo remove_junk($dato_cta['lectura_actual']); ?>'>
-                    <td></td>
+                <td class="text-center"> <?php echo remove_junk($reportes['nombre']);?></td>
+                <td class="text-center"> <?php echo remove_junk($reportes['apellido']); ?></td>
+                <td class="text-center"> <?php echo remove_junk($reportes['num_cuenta']); ?></td>
+                <td class="text-center"><?php echo remove_junk($reportes['lectura_actual']); ?></td>
+                 <td class="text-center"></td>
                 </tr>
-             
                 <?php endforeach; ?>
               </tbody>
-              </table>	
-
+              </table>
  </page> 
 <?php
- $content = ob_get_clean();
- 
- require_once('html2pdf/html2pdf.class.php');
- try {
+error_reporting(0);
+ob_start();
+$content = ob_get_clean();
+/////
+$pdf = new PDF($order_invoice_list, PDF::TEMPLATE_INVOICE, $this->context->smarty, $this->context->language->id);
+ob_clean();
+$pdf->render();
+//////
+require_once('html2pdf/html2pdf.class.php');
+try {
  $pdf = new HTML2PDF('P','A4','es','UTF-8');//L y P*/
  $pdf->pdf->SetDisplayMode('fullpage');
- $pdf -> writeHTML($content);
+ $pdf ->writeHTML($content);
  $pdf -> pdf ->IncludeJS('print(TRUE)');
- $pdf -> output('listado_lecturas.pdf');
+ $pdf ->output('listado_lecturaspdf.pdf');
  }
   catch(HTML2PDF_exception $e) {
         echo $e;
         exit;
-    }
+    };
 ?>
+
