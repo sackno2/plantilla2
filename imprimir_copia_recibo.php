@@ -153,13 +153,14 @@ $nombre_servicio =$servi_ok["nombre"];
 //EXTRAER DATOS DE TABLA CUENTA						
 $cta = "SELECT * FROM inv_cliente WHERE num_cuenta='$num_cuenta'";			
 $result_cta = $db->query($cta);
-if($cta_ok = mysqli_fetch_array($result_cta))
+
+if($cta_ok = mysqli_fetch_array($result_cta)) {
 $num_cuenta = $cta_ok["num_cuenta"];
 $cod_cliente = $cta_ok["cod_cliente"];
 $num_medidor = $cta_ok["num_medidor"];
-$nombre = $cliente_ok["nombre"];
-$apellido = $cliente_ok["apellido"];
-
+$nombre = $cta_ok["nombre"];
+$apellido = $cta_ok["apellido"];
+}
 //CONSUMO								
 //obtener datos de la lectura del mes a facturar
 $lectura_query = "SELECT * FROM lecturas WHERE num_cuenta='$num_cuenta' AND mes='$mes' AND anio='$anio'";			
@@ -329,11 +330,11 @@ if ($consumo3 >=$rango_inicio3 AND $consumo3 <= $rango_final3 )
             <table align="center" width="99%" bgcolor="white" cellspacing="0" cellpadding="0" style="border: solid 1px silver;font-size:0.7em" class="">	
             	<tr height="65">
                     <td COLSPAN="2">
-			&nbsp;&nbsp;<img src="../images/logo.png" width="140" height="50">
+			&nbsp;&nbsp;<img src="./libs/images/logoadescotab.png" width="140" height="50">
                     </td>
                     <td COLSPAN="2" align="center">
 			DIRECCION<br>
-                    	DIRECCION2<br>
+      DIRECCION2<br>
 			NIT: <br>
 			TELS.: <br>
                     </td>
@@ -345,8 +346,10 @@ if ($consumo3 >=$rango_inicio3 AND $consumo3 <= $rango_final3 )
 			<tr>
                             <td width="99%" align="center">
                                 <?php
+
+
 				echo strtoupper($nombre).' '.strtoupper($apellido).'<br>';
-				
+	
 				?>
                             </td>
 			</tr>
@@ -606,7 +609,7 @@ if ($consumo3 >=$rango_inicio3 AND $consumo3 <= $rango_final3 )
 			<table align="center" width="99%"  bgcolor="white" cellspacing="0" cellpadding="0" style="border: solid 1px silver;font-size:0.7em" class="">	
 				<tr height="65">
 					<td COLSPAN="2">
-						&nbsp;&nbsp;<img src="../images/logo.png" width="140" height="50">
+						&nbsp;&nbsp;<img src="./libs/images/logoadescotab.png" width="140" height="50">
 					</td>
 					<td COLSPAN="2" align="center">
 						

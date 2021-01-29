@@ -167,8 +167,37 @@ var ajax = new sack(); //Muestra datos del cliente
         </div>
         </div>       
       
-      <div class="form-row">
- 	<div class="form-group col-md-12">
+      <div class="form-row"> </div> 
+
+
+      	<div class="form-row">
+        <div class="form-group col-md-6">
+        <label for="num_recibo">Ultimo recibo:</label>
+              <?php
+		$query_rec= "SELECT * FROM recibos";
+                $result_rec= $db->query($query_rec);
+                $row = mysqli_fetch_array($result_rec);
+                if ($row==0)
+                {   $ultimo_recibo=0;
+                 
+                    
+                    
+                }else{ 
+                    
+                 // $ultimo_recibo=1;  
+                  $query_un = "SELECT MAX(num_recibo) AS num_recibo1 FROM recibos";
+                  $result_un = $db->query($query_un);
+                  $row = mysqli_fetch_array($result_un);
+                  $ultimo_recibo= $row['num_recibo1'];
+                  //echo $ultimo_recibo;
+               }
+              
+               ?>
+        <input type="number" name="num_recibo" value='<?php echo $ultimo_recibo;?>' class="textbox" style="width:80px;"   id="num_recibo" readonly>
+          
+								
+        </div>
+ 	<div class="form-group col-md-6">
             <label for="num_recibo"><b>Ingrese N&uacute;mero de Recibo:</b></label>
             <input type="number" pattern="[0-9]{0,10}" name="num_recibo" maxlength="10" class="textbox" style="width:100px;" required />
             
@@ -219,7 +248,8 @@ var ajax = new sack(); //Muestra datos del cliente
 	<!--Formulario seleccion de servicio-->
 	<form name="form2" action="" method="POST" onsubmit="enviarDatosServicios(); return false">
 	<table align="center" width="99%" height="50" cellspacing="0" cellpadding="0"  class="tabla_bordes_color">
-            
+            <tr>
+            </tr>
             <td align="right">
             Servicio :
             </td>
