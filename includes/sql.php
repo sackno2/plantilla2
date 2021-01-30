@@ -1063,9 +1063,9 @@ function join_lecturas_table_lista_cta(){
     return find_by_sql($sql);
    }
 
-function join_lecturas_reporte(){
+function join_lecturas_reporte($mes,$an){
     global $db;
-    $sql = "SELECT * FROM reportlecturas2pdf";
+    $sql = "SELECT * FROM lecturas WHERE mes=$mes and anio=$an";
     return find_by_sql($sql);
    }
 ?>

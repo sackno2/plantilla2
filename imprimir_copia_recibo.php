@@ -160,6 +160,7 @@ $cod_cliente = $cta_ok["cod_cliente"];
 $num_medidor = $cta_ok["num_medidor"];
 $nombre = $cta_ok["nombre"];
 $apellido = $cta_ok["apellido"];
+$direccion = $cta_ok["direccion"];
 }
 //CONSUMO								
 //obtener datos de la lectura del mes a facturar
@@ -333,7 +334,7 @@ if ($consumo3 >=$rango_inicio3 AND $consumo3 <= $rango_final3 )
 			&nbsp;&nbsp;<img src="./libs/images/logoadescotab.png" width="140" height="50">
                     </td>
                     <td COLSPAN="2" align="center">
-			DIRECCION<br>
+			DIRECCION: <?php echo $direccion; ?><br>
       DIRECCION2<br>
 			NIT: <br>
 			TELS.: <br>
@@ -613,7 +614,7 @@ if ($consumo3 >=$rango_inicio3 AND $consumo3 <= $rango_final3 )
 					</td>
 					<td COLSPAN="2" align="center">
 						
-						DIRECCION 1<br>
+						DIRECCION 1: <?php echo $direccion; ?><br>
 						DIRECCION 2 <br>
 						NIT: <br>
 						TELS.: <br>
