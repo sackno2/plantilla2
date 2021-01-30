@@ -37,17 +37,10 @@
                                                         <tr>
                                                         
 							<td align="center">
-								
-                                                            <a href="listado_lecturasPDF.php" class="btn btn-primary" align="center" target="_blank">Listado de lectura</a>
-                                                            
+								                                       <a href="toma_lectura.php" class="btn btn-primary" align="center" target="_blank">Listado de lectura</a>                                             
 							</td>		
 
-
-              <td align="center">
-                
-                                                            <a href="toma_lectura.php" class="btn btn-primary" align="center" target="_blank">Listado de lectura dos</a>
-                                                            
-              </td>             					
+     					
                                                         </tr>		
                                                        
 						                                           	

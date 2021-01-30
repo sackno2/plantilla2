@@ -204,11 +204,13 @@ td{
                     <tr>
                    
                     <td colspan=3>Ultima fecha de pago:  
-                     <?php echo fecha_guion($DatosCliente[fecha_pago])?></td>								
+                     <?php echo fecha_guion($DatosCliente[fecha_pago])?><br>
+                    </td>								
                 <!--<td colspan=3> Ultima fecha de pago: </td>					
                     <td><?php echo fecha_guion($DatosCliente[fecha_pago])?></td>
                 -->								
                     </tr>
+
 <!--//COPIA DEL RECIBO CLIENTE///-->
 
 <tr>
@@ -262,7 +264,6 @@ td{
                      <?php echo fecha_guion($DatosCliente[fecha_pago])?></td>                                                           
 </tr>
 <tr><td><h3>------------------------------------------------------</h3></td></tr>
-<tr><td></td></tr>
 <tr><td></td></tr>
 </table>
 <!--////////////-->

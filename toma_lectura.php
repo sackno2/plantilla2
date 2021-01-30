@@ -74,17 +74,22 @@ function mes_letras($mes)
 <form method="post" action="listado_lecturasPDF.php" class="clearfix"> 
 <table align="center" width="100%" bgcolor="white" height="530" cellspacing="1" cellpadding="0" style="border: solid 1px grey;" class="tabla_bordes"><!--tabla margen del tama�o del formulario-->
 	<tr>
-		<td align="center" width="300px">
-		
-			<fieldset class="tabla_bordes" style="border: solid 1px silver;">
-					
+	 
+	  <td align="center" width="300px">
+			<fieldset class="tabla_bordes" style="border: solid 1px silver;">		
 			<!-- Formulario filtrado--> 
-			<table align="center" width="99%" height="480" cellspacing="0" cellpadding="0" style="border: solid 1px #CED8F6;" class="tabla_bordes_color">
-				<tr>
-				<div class="form-row">
+	<table align="center" width="99%" height="480" cellspacing="0" cellpadding="0" style="border: solid 1px #CED8F6;" class="tabla_bordes_color">
+	
+	<tr>
+	<div class="form-row">
+	 <tr>
+		<td align="center" width="100px">
+		 <h4>Seleccione mes y año</h4>	
+		</td>
+	 </tr>	
  	<div class="form-group col-md-4">
       <label for="mes_r">Mes:</label>
-        <select id="mes" name="mes_r" onchange="enviar_mes(this.value)" class="form-control" required >
+        <select id="mes" name="mes_r" onchange="enviar_mes(this.value)" class="form-control" style="width: 140%;" required >
 	<option value=1> 1-Enero</option>
 	<option value=2> 2-Febrero</option>
 	<option value='3'> 3-Marzo</option>
@@ -98,10 +103,11 @@ function mes_letras($mes)
 	<option value='11'>11-Noviembre</option>
 	<option value='12'>12-Diciembre</option>
 	</select>
-
-        </div>
-     
-         
+    </div> 
+    &nbsp;
+	&nbsp;
+	&nbsp;
+	&nbsp;
      <div class="form-group col-md-4">
       <label for="anio_r">A&ntilde;o:</label>
         <?php
@@ -116,7 +122,8 @@ function mes_letras($mes)
 										$anio_9 = date('Y', strtotime('-9 year'));
 										
 									?>
-									<select name="anio_r" class="form-control"  required >
+
+									<select name="anio_r" class="form-control" style="width: 130%;"  required >
 										<option value="<?php echo date('Y');?>"><?php echo date('Y');?></option>
 										<option value="<?php echo $anio_1;?>"><?php echo $anio_1;?></option>
 										<option value="<?php echo $anio_2;?>"><?php echo $anio_2;?></option>
@@ -145,7 +152,7 @@ function mes_letras($mes)
 					<div class="btn-group">
                     
 
-                    <input type="submit" name="add_cliente" id="submit" value="Guardar" class="btn btn-primary">
+                    <input type="submit" name="add_cliente" id="submit" value="Enviar" class="btn btn-primary">
      
                     </div>
 

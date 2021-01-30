@@ -93,7 +93,7 @@ $datos2Y=json_encode($valores2Y);
    </div>
    </div>
 
-  <div class="row">
+<!--  <div class="row">
    <div class="col-md-6">
      <div class="panel panel-default">
        <div class="panel-heading">
@@ -112,7 +112,7 @@ $datos2Y=json_encode($valores2Y);
         </div>
    </div>
   </div>
- </div>
+ </div> -->
 
 
 
@@ -320,7 +320,7 @@ Plotly.newPlot('myDiv', data2);
 
 
 
-  <div class="row">
+<!--  <div class="row">
    <div class="col-md-4">
      <div class="panel panel-default">
        <div class="panel-heading">
@@ -469,7 +469,7 @@ Plotly.newPlot('myDiv', data2);
 
         </table>
    </div>
-  </div>
+  </div> -->
 
 
 

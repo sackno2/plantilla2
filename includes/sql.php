@@ -1065,7 +1065,7 @@ function join_lecturas_table_lista_cta(){
 
 function join_lecturas_reporte($mes,$an){
     global $db;
-    $sql = "SELECT * FROM lecturas WHERE mes=$mes and anio=$an";
+    $sql = "SELECT * FROM reportlecturas4pdf WHERE mes=$mes AND anio=$an";
     return find_by_sql($sql);
    }
 ?>

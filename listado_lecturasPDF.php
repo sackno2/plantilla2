@@ -1,7 +1,9 @@
 <?php
+ob_start();
  $page_title = 'Listado de Lectura';
   //require_once('config.php');
   require_once('includes/load.php');
+//error_reporting(0);
 
 $fech_lectura = busq_ultima_fecha();
 $fecha_ultima ="";
@@ -105,6 +107,7 @@ $proximo_mes_letra= mes_letras("$proximo_mes");
                 <th class="text-center" style="width: 20%;"> Nombres</th>
                 <th class="text-center" style="width: 20%;"> Apellidos</th>
                 <th class="text-center" style="width: 10%;"> Cuenta </th>
+                <th class="text-center" style="width: 10%;"> Dirección </th>
                 <th class="text-center" style="width: 15%;"> Lectura Anterior</th>
                 <th class="text-center" style="width: 15% ;"> Lectura Actual</th>
               </tr>
@@ -116,6 +119,7 @@ $proximo_mes_letra= mes_letras("$proximo_mes");
                 <td class="text-center"> <?php echo remove_junk($reportes['nombre']);?></td>
                 <td class="text-center"> <?php echo remove_junk($reportes['apellido']); ?></td>
                 <td class="text-center"> <?php echo remove_junk($reportes['num_cuenta']); ?></td>
+                <td class="text-center"> <?php echo remove_junk($reportes['direccion']); ?></td>
                 <td class="text-center"><?php echo remove_junk($reportes['lectura_actual']); ?></td>
                  <td class="text-center"></td>
                 </tr>
@@ -125,8 +129,7 @@ $proximo_mes_letra= mes_letras("$proximo_mes");
   </page> 
 
 <?php
-//error_reporting(0);
-//ob_start();
+
 
 /////
 //$pdf = new PDF($order_invoice_list,PDF::TEMPLATE_INVOICE, $this->context->smarty, $this->context->language->id);
