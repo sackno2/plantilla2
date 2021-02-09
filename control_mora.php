@@ -91,8 +91,21 @@ var ajax = new sack();
 				echo '	<table Width="100%" cellspacing="0" cellpadding="0"  style="border: solid 1px silver;">';
 						$contador=0;
 						$num_fila = 0;
+			    
+				    
+
 						while ($row = mysqli_fetch_array($rs))
 							{
+
+						//////////////////////////
+							$total_cuenta=0;
+							$cuenta3= "";
+							
+                   
+                        /////////////////////////
+						
+							
+								
 								$bgcolor1 = " '#CED8F6' "; // color sobre seleccion 
 								$bgcolor2 = " '#ffffff' ";// color original blanco 
 								$bgcolor3 = " '#EEE9FD' ";// color original 2
@@ -104,7 +117,9 @@ var ajax = new sack();
 							 echo 'bgcolor=#EEE9FD onmouseover="this.style.backgroundColor= '.$bgcolor1.'; " onmouseout="this.style.backgroundColor= '.$bgcolor3.';"'; //si el resto de la divisi�n NO es 0 pongo otro color 
 														 
 								echo '> '; 
-														
+								
+											
+								
 								echo"
 									<td><input type='hidden' value='".$row['cod_cliente']."'> </td>
 									<td Width='10%'>".$row['Cuenta']."</td>
@@ -115,8 +130,41 @@ var ajax = new sack();
 									<td Width='10%'>".$row['Monto']."</td>	
 									<td Width='10%'>".$row['Total']."</td>	
 									</tr>";
-									$num_fila++;
-									$contador++;									
+							//////////////////////////////
+									
+								if (isset($row['Cuenta'])){
+
+									$cuenta2 = $row['Cuenta'];
+										
+
+									if ($cuenta3 <> $cuenta2){
+
+									$total_cuenta = $row['Total']+ $total_cuenta;
+									echo "<tr>
+									           <td>".
+									           $total_cuenta
+									           ."</td>
+									           </tr>";	
+									
+									}else{
+
+										$cuenta3 = $cuenta2;
+										if ($cuenta3 === $cuenta2){
+										$total_cuenta = $row['Total']+ $total_cuenta;
+										echo "<tr>
+									           <td>".
+									           $total_cuenta
+									           ."</td>
+									           </tr>";	
+										}
+
+									}
+ 
+								}	
+							///////////////////////////////
+							 
+								$num_fila++;
+								$contador++;
 							}
 							mysqli_free_result($rs);
 									
