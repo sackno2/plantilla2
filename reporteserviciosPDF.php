@@ -16,6 +16,7 @@
   $rowgenera2 = mysqli_fetch_array($asociacion1);
   
 ?>
+
 <page>
  <h3 align="center">1. Reporte de servicios</h3>
  <table width="621" border="0" align="center" cellspacing="1">
@@ -64,15 +65,31 @@
     </table> 
  </page> 
 <?php
+ ob_start();
+ //include(dirname(__FILE__).'/res/reporteserviciosPDF.php');
  $content = ob_get_clean();
- 
+ //include_once realpath((dirname(__FILE__).'html2pdf/html2pdf.class.php'));
  require_once('html2pdf/html2pdf.class.php');
+
+ /*try
+    {
+        $html2pdf = new HTML2PDF('P', 'A4', 'es','UTF-8');
+        $html2pdf->writeHTML($content, isset($_GET['vuehtml']));
+        $html2pdf ->pdf->IncludeJS('print(TRUE)');
+        $html2pdf->Output('reportservicios.pdf');
+    }
+    catch(HTML2PDF_exception $e) {
+        echo $e;
+        exit;
+    }*/
+
+
  try {
  $pdf = new HTML2PDF('P','A4','es','UTF-8');//L y P*/
  $pdf->pdf->SetDisplayMode('fullpage');
- $pdf -> writeHTML($content);
+ $pdf ->writeHTML($content, isset($_GET['vuehtml']));
  $pdf -> pdf ->IncludeJS('print(TRUE)');
- $pdf -> output('reportservicios.pdf');
+ $pdf ->Output('reportservicios.pdf');
  }
   catch(HTML2PDF_exception $e) {
         echo $e;

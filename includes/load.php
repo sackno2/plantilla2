@@ -1,5 +1,6 @@
 
 <?php
+error_reporting(0);
 //---reportar todos los errores menos el de NOTICE------------------------
 error_reporting(E_ALL ^ E_NOTICE);
 // -----------------------------------------------------------------------

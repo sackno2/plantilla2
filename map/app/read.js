@@ -34,7 +34,8 @@ function _displayMapRead (divtarget) {
 									"<tbody>" +
 										"<tr>" +
 											"<td class=''>Notes</td>" +
-											"<td class=''><strong>"+feature.properties.notes+"</strong></td>" +
+											"<td class=''><strong>"+feature.properties.notes+"</strong></td>" + 
+											"<td class=''><strong>"+feature.properties.num_cuenta+"</strong></td>"+
 										"</tr>" +
 									"</tbody>" +
 								"</table>" +
@@ -81,6 +82,7 @@ function _displayMapRead (divtarget) {
 										"<tr>" +
 											"<td class=''>Notes</td>" +
 											"<td class=''><strong>"+feature.properties.notes+"</strong></td>" +
+											"<td class=''><strong>"+feature.properties.notes+"</strong></td>" +
 										"</tr>" +
 									"</tbody>" +
 								"</table>" +
@@ -126,6 +128,7 @@ function _displayMapRead (divtarget) {
 									"<tbody>" +
 										"<tr>" +
 											"<td class=''>Notes</td>" +
+											"<td class=''><strong>"+feature.properties.notes+"</strong></td>" +
 											"<td class=''><strong>"+feature.properties.notes+"</strong></td>" +
 										"</tr>" +
 									"</tbody>" +

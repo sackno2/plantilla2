@@ -78,15 +78,22 @@ if(!$cliente){
 	  
 	   
        $result = $db->query($query);
-               if($result && $db->affected_rows() === 1){
-                 $session->msg('s',"Cliente ha sido actualizado. ");
+       if($result && $db->affected_rows() === 1){
+            $session->msg('s',"Cliente ha sido actualizado. ");
+        
+
                  redirect('cliente.php', false);
-               } else {
+               } 
+
+              //}
+
+               else {
                  $session->msg('d',' Lo siento, actualización falló.');
                  redirect('edit_cliente.php?id='.$cliente['cod_cliente'], false);
                }
+          
 
-   } else{
+   } else {
        $session->msg("d", $errors);
        redirect('edit_cliente.php?cod_cliente='.$cliente['cod_cliente'], false);
    }

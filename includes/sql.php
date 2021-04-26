@@ -1,6 +1,6 @@
 <?php
   require_once('includes/load.php');
-
+error_reporting(0);
 /*--------------------------------------------------------------*/
 /* Function for find all database table rows by table name
 /*--------------------------------------------------------------*/
@@ -247,6 +247,20 @@ function delete_by_id7($table,$id)
    }
 }
 
+function delete_by_id8($table,$id)
+{
+  global $db;
+  $id = (int)$id;
+  if(tableExists($table))
+   {
+    $sql1 ="DELETE FROM ".$db->escape($table);
+    $sql1 .= " WHERE cod_cuenta=". $db->escape($id);
+    $sql1 .= " LIMIT 1"; 
+    $db->query($sql1);
+    return ($db->affected_rows() === 1) ? true : false;
+   }
+}
+
 
 
 /*--------------------------------------------------------------*/
@@ -468,7 +482,7 @@ function tableExists($table){
             redirect('index.php', false);
       //if Group status Deactive
      elseif($login_level['group_status'] === '0'):
-           $session->msg('d','Este nivel de usaurio esta inactivo!');
+           $session->msg('d','Este nivel de usuario esta inactivo!');
            redirect('home.php',false);
       //cheackin log in User level and Require level is Less than or equal to
      elseif($current_user['user_level'] <= (int)$require_level):
@@ -518,6 +532,13 @@ function tableExists($table){
   function join_inv_cliente_table(){
      global $db;
      $sql  =" SELECT * FROM inv_cliente";
+    return find_by_sql($sql);
+
+   }
+
+   function join_inv_cliente_table2(){
+     global $db;
+     $sql  =" SELECT * FROM inv_cliente WHERE estado='2'";
     return find_by_sql($sql);
 
    }

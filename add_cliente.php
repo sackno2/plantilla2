@@ -1,4 +1,5 @@
 <?php
+  
   $page_title = 'Agregar Cliente';
   require_once('includes/load.php');
   // Checkin What level user has permission to view this page
@@ -273,14 +274,17 @@ $date = explode("/",date('d/m/Y'));
       </select>
     </div>
   </div>
-
-  <div class="form-group col-md-4">
-      <label for="user_lect">Usuario</label>
+  
+  <div clas="form-row">
+  <div class="form-group col-md-12">
+      <label for="user_lect" align="center">Usuario</label>
      <?php  if ($session->isUserLoggedIn(true)); ?>  
-     <input type="user_lect" name="user_lect" class="form-control" id="user_lect" value="<?php echo remove_junk(ucfirst($user['name']));?>" readonly>
-   
-        
+     <input type="user_lect" name="user_lect" class="form-control" id="user_lect" align="center" value="<?php echo remove_junk(ucfirst($user['name']));?>" readonly>  
   </div>
+  </div>
+
+  <div clas="row">
+  </div>  
 <!--  <div class="row">
   <div class="form-group">
    <label for="ubicaGeo">Ubicacion Geografica</label>
@@ -300,7 +304,7 @@ $date = explode("/",date('d/m/Y'));
        <input type="text" name="altura_cli" class="form-control" id="altura_cli" placeholder="Ej. 110" value="0">
     </div>
   </div> -->
-  <div class="row">
+  <div class="form-row">
       <div class="form-group col-md-4" align="left">
       <input type="submit" name="submit1" id="submit1" value="Buscar" class="btn btn-primary">
       </div>

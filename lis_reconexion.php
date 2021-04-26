@@ -65,7 +65,7 @@
                     <a href="edit_reconexion.php?id=<?php echo (int)$reconexiones['cod_cuenta'];?>" class="btn btn-info btn-xs"  title="Editar" data-toggle="tooltip">
                       <span class="glyphicon glyphicon-edit"></span>
                     </a>
-                     <a href="delete_reconexion.php?id=<?php echo (int)$reconexiones['cod_orden_recon'];?>" class="btn btn-danger btn-xs"  title="Eliminar" data-toggle="tooltip">
+                     <a href="delete_reconexion.php?id=<?php echo (int)$reconexiones['cod_cuenta'];?>" class="btn btn-danger btn-xs"  title="Eliminar" data-toggle="tooltip">
                       <span class="glyphicon glyphicon-trash"></span>
                     </a>
                   </div>

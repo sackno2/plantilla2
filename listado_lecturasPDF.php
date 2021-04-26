@@ -1,5 +1,5 @@
 <?php
-ob_start();
+
  $page_title = 'Listado de Lectura';
   //require_once('config.php');
   require_once('includes/load.php');
@@ -130,7 +130,7 @@ $proximo_mes_letra= mes_letras("$proximo_mes");
 
 <?php
 
-
+ob_start();
 /////
 //$pdf = new PDF($order_invoice_list,PDF::TEMPLATE_INVOICE, $this->context->smarty, $this->context->language->id);
 //ob_clean();

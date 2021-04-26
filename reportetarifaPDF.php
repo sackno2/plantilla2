@@ -70,6 +70,7 @@
     </table> 
  </page> 
 <?php
+ ob_start();
  $content = ob_get_clean();
  
  require_once('html2pdf/html2pdf.class.php');

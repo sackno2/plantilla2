@@ -13,7 +13,7 @@ try {
 	$dbcon = new PDO('mysql:host=localhost;dbname=oswa_inv', $user);
 	//$dbcon = new PDO("pgsql:host=".$dbconfig['_pgsql_db_host_'].";port=".$dbconfig['_pgsql_db_port_'].";dbname=".$dbconfig['_pgsql_db_name_'].";user=".$dbconfig['_pgsql_db_user_'].";password=".$dbconfig['_pgsql_db_pass_']."");
 	$dbcon->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	$stmt = $dbcon->prepare("SELECT gid, notes, ST_AsGeoJSON((geom),4326,6) AS geojson FROM data_point WHERE gid = :gid");
+	$stmt = $dbcon->prepare("SELECT gid, notes, num_cuenta, ST_AsGeoJSON((geom),4326,6) AS geojson FROM data_point WHERE gid = :gid");
 	$stmt->bindValue(":gid", $objectgid, PDO::PARAM_INT);
 	if($stmt->execute()){
 		$id_count = 0;
