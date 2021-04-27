@@ -25,6 +25,19 @@
        $c_asigmedi = remove_junk($db->escape($_POST['asignado_medidor']));
      }
      $date    = make_date();
+     //Buscar en la BD si existe el numero de medidor.
+     $query_m = "SELECT numero FROM inv_medidor WHERE numero='$c_nummedidor'";
+     $resul_m = $db->query($query_m);
+     //Si existe el numero del medidor  que de un mensaje y regrese a add_medidor.php
+     
+        if($resul_m->num_rows >= 1){    
+                //if($db->query($query_cta)){
+                $session->msg('d',"El número de medidor ingresado ya existe  ".$c_nummedidor);
+                 //mysql_free_result($query_cta);
+                redirect('add_medidor.php', false);
+                }
+     //Fin verificacion de numero ingresado
+
      $query  = "INSERT INTO inv_medidor (numero,fecha_crea,cod_marca,serie,estado,asignado) VALUES ('{$c_nummedidor}','{$c_fechactual}','{$c_codmarca}','{$c_smedidor}','{$c_estadomedi}', '{$c_asigmedi}')";
      $query .=" ON DUPLICATE KEY UPDATE numero='{$c_nummedidor}'";
 	 
