@@ -1,9 +1,9 @@
 <?php
   $page_title = 'Listado de recibos';
   //require_once('config.php');
-   ob_start();
+  // ob_start();
   require_once('includes/load.php');
-  require_once(dirname(__FILE__)."/html2pdf/html2pdf.class.php");
+  //require_once(dirname(__FILE__)."/html2pdf/html2pdf.class.php");
   //$asociacion = join_asociacion1_table();
   //$cliente1 = find_by_id2('reportecliente2pdf',$_GET['id']);
   // error_reporting(0);
@@ -267,10 +267,6 @@ td{
 <tr><td></td></tr>
 </table>
 <!--////////////-->
-
-
-
-                  
                     
     
               <input type='hidden' name='num_cuenta$n' value='$Datos[num_cuenta]'>
@@ -292,9 +288,11 @@ td{
     }
      mysqli_close(); ?>
 <?php
- $content = ob_get_clean();
+ ob_start();
+ 
  //$content= ob_clean();
- //require_once('html2pdf/html2pdf.class.php');
+ require_once('html2pdf/html2pdf.class.php');
+ $content = ob_get_clean();
  try {
     //$pdf = new HTML2PDF('L','letter','es','UTF-8');//L y P*/
     //$pdf->pdf->SetDisplayMode('fullpage');
@@ -317,20 +315,11 @@ td{
    
     
 
-	  
-
-    
- 
-            
-            
-
-
-
 
 
 
     // get the HTML
-    ob_start();
+   /* ob_start();
     include(dirname(__FILE__).'/listado_rec_imp2.php');
     $content = ob_get_clean();
 
@@ -350,10 +339,10 @@ td{
     catch(HTML2PDF_exception $e) {
         echo $e;
         exit;
-    }
+    }*/
 
     
     
     
-    
+?> 
     

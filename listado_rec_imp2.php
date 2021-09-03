@@ -216,12 +216,12 @@ $nfilas=0;
     }
      mysqli_close(); ?>
 <?php
- $content = ob_get_clean();
+ /*$content = ob_get_clean();
  //$content= ob_clean();
  require_once('html2pdf/html2pdf.class.php');
  try {
 $pdf = new HTML2PDF('L','letter','es','UTF-8');//L y P*/
- $pdf->pdf->SetDisplayMode('fullpage');
+/* $pdf->pdf->SetDisplayMode('fullpage');
  ob_clean();
  $pdf -> writeHTML($content);
  $pdf -> pdf ->IncludeJS('print(TRUE)');
@@ -231,7 +231,7 @@ $pdf = new HTML2PDF('L','letter','es','UTF-8');//L y P*/
  catch(HTML2PDF_exception $e) {
        echo $e;
      exit;
-   }
+   }*/
     
    
     
